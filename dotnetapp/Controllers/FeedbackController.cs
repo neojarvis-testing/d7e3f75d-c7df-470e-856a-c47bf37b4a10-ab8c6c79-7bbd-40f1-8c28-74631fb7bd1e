@@ -10,6 +10,7 @@ namespace dotnetapp.Controllers
     [Route("api/[controller]")]
     public class FeedbackController : ControllerBase
     {
-        //comment
+        private readonly FeedbackService FeedbackService;
+        
     }
 }
