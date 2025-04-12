@@ -9,7 +9,7 @@ namespace dotnetapp.Models
     public class Room
     {
 
-    [Required(ErrorMessage = "Room ID is required.")]
+    [Key]
     public int RoomId { get; set; }
 
     [Required(ErrorMessage = "Hotel Name is required.")]
@@ -18,7 +18,7 @@ namespace dotnetapp.Models
     [Required(ErrorMessage = "Room Type is required.")]
     public string RoomType { get; set; }
 
-    [Range(1, 1000, ErrorMessage = "Number of Rooms must be between 1 and 1000.")]
+    [Range(1, int.MaxValue, ErrorMessage="No. of rooms must be greater than 1")]
     public int NoOfRooms { get; set; }
 
     [Range(0.1, double.MaxValue, ErrorMessage = "Price Per Night must be greater than zero.")]
@@ -40,7 +40,6 @@ namespace dotnetapp.Models
     public string Facilities { get; set; }
 
     [Required(ErrorMessage = "Image URL is required.")]
-    [Url(ErrorMessage = "Please provide a valid URL for the image.")]
     public string ImageUrl { get; set; }
 
     }

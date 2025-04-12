@@ -30,10 +30,11 @@ namespace dotnetapp.Services
 
         public async Task<bool> AddRoom(Room room)
         {
-            int roomCount = await _context.Rooms
-                .CountAsync(r => r.HotelName == room.HotelName);
-
-            if (roomCount >= 10)
+            int roomsCount =0;
+            var r = await _context.Rooms.FirstOrDefaultAsync(r => r.HotelName == room.HotelName);
+            if (r == null)
+            {
+                if (room.NoOfRooms > 10)
             {
                 throw new RoomException("Total number of rooms for this hotel cannot exceed 10.");
             }
@@ -42,6 +43,21 @@ namespace dotnetapp.Services
                 _context.Rooms.Add(room);
                 await _context.SaveChangesAsync();
                 return true;
+            }
+            }
+            else
+            {
+                roomsCount = r.NoOfRooms + room.NoOfRooms;
+                if (roomsCount > 10)
+                {
+                    throw new RoomException("Total number of rooms for this hotel cannot exceed 10.");
+                }
+                else
+                {
+                    _context.Rooms.Add(room);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
             }
         }
 
