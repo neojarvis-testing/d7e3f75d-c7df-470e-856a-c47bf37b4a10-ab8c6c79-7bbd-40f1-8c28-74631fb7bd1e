@@ -8,10 +8,10 @@ namespace dotnetapp.Models
 {
     public class UserRoles
     {
+
         [Required(ErrorMessage = "Admin role is required.")]
         public string Admin { get; set; }
-
-        [Required(ErrorMessage = "User role is required.")]
-        public string User { get; set; }
+        [Required(ErrorMessage="User is required")]
+        public string User{get; set;}
     }
 }
