@@ -3,6 +3,7 @@ using dotnetapp.Services;
 using dotnetapp.Data;
 using dotnetapp.Models;
 using Microsoft.EntityFrameworkCore;
+
  
 var builder = WebApplication.CreateBuilder(args);
  
@@ -21,10 +22,13 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("con")));
  
 // Register AnnouncementService
-builder.Services.AddScoped<AnnouncementService>();
+builder.Services.AddScoped<BookingService>();
+builder.Services.AddScoped<FeedbackService>();
+builder.Services.AddScoped<RoomService>();
+builder.Services.AddScoped<AuthService>();
  
 var app = builder.Build();
  
