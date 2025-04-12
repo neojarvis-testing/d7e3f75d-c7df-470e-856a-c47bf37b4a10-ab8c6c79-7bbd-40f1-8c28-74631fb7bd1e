@@ -1,8 +1,10 @@
+using dotnetapp.Models;
+using dotnetapp.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks; 
+using dotnetapp.Exceptions;
 
 namespace dotnetapp.Controllers
 {
@@ -10,6 +12,118 @@ namespace dotnetapp.Controllers
     [Route("api/[controller]")]
     public class RoomController : ControllerBase
     {
-        
+        private readonly RoomService _roomService;
+
+        public RoomController(RoomService roomService)
+        {
+            _roomService = roomService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
+        {
+            try
+            {
+                var rooms = await _roomService.GetAllRooms();
+                return Ok(rooms);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("{roomId}")]
+        public async Task<ActionResult<Room>> GetRoomById(int roomId)
+        {
+            try
+            {
+                var room = await _roomService.GetRoomById(roomId);
+                if (room == null)
+                {
+                    return NotFound("Cannot find any room");
+                }
+                return Ok(room);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddRoom([FromBody] Room room)
+        {
+            try
+            {
+                bool result = await _roomService.AddRoom(room);
+                if (result)
+                {
+                    return Ok("Room added successfully");
+                }
+                else
+                {
+                    return StatusCode(500, "Failed to add room");
+                }
+            }
+            catch (RoomException rex)
+            {
+                return StatusCode(500, rex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut("{roomId}")]
+        public async Task<ActionResult> UpdateRoom(int roomId, [FromBody] Room room)
+        {
+            try
+            {
+                bool updated = await _roomService.UpdateRoom(roomId, room);
+                if (updated)
+                {
+                    return Ok("Room updated successfully");
+                }
+                else
+                {
+                    return NotFound("Cannot find any room");
+                }
+            }
+            catch (RoomException rex)
+            {
+                return StatusCode(500, rex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete("{roomId}")]
+        public async Task<ActionResult> DeleteRoom(int roomId)
+        {
+            try
+            {
+                bool deleted = await _roomService.DeleteRoom(roomId);
+                if (deleted)
+                {
+                    return Ok("Room deleted successfully");
+                }
+                else
+                {
+                    return NotFound("Cannot find any room");
+                }
+            }
+            catch (RoomException rex)
+            {
+                return StatusCode(500, rex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
