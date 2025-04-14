@@ -24,9 +24,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
-// builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("con")));
+
 // Register AnnouncementService
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<FeedbackService>();
