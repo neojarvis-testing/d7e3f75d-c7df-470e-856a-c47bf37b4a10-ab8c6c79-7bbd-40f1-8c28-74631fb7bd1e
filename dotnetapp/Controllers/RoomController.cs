@@ -5,9 +5,13 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks; 
 using dotnetapp.Exceptions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace dotnetapp.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class RoomController : ControllerBase
@@ -19,6 +23,7 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -51,6 +56,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {
