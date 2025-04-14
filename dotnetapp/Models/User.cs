@@ -10,7 +10,7 @@ namespace dotnetapp.Models
     public class User
     {
          
-    [Required(ErrorMessage = "User ID is required.")]
+    [Key]
     public int UserId { get; set; }
 
     [Required(ErrorMessage = "Email is required.")]
