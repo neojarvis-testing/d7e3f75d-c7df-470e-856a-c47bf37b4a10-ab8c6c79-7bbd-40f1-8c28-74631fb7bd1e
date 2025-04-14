@@ -14,10 +14,9 @@ using System.Security.Cryptography.Xml;
  
  
 var builder = WebApplication.CreateBuilder(args);
- 
-// Add services to the container.
+
  builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
-// builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("con")));
+
 // Register AnnouncementService
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<FeedbackService>();
