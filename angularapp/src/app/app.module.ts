@@ -8,7 +8,6 @@ import { AdminnavComponent } from './components/adminnav/adminnav.component';
 import { AdminviewfeedbackComponent } from './components/adminviewfeedback/adminviewfeedback.component';
 import { AdminviewrequestedbookingComponent } from './components/adminviewrequestedbooking/adminviewrequestedbooking.component';
 import { AdminviewroomComponent } from './components/adminviewroom/adminviewroom.component';
-import { AuthguardComponent } from './components/authguard/authguard.component';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -32,7 +31,6 @@ import { HttpClientModule } from '@angular/common/http';
     AdminviewfeedbackComponent,
     AdminviewrequestedbookingComponent,
     AdminviewroomComponent,
-    AuthguardComponent,
     ErrorComponent,
     HomeComponent,
     LoginComponent,
