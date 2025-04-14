@@ -1,104 +1,223 @@
-using System;
-using dotnetapp.Models;
-using dotnetapp.Services;
+// using System;
+// using dotnetapp.Models;
+// using dotnetapp.Services;
+// using Microsoft.AspNetCore.Identity;
+// using Microsoft.EntityFrameworkCore;
+// using Microsoft.AspNetCore.Authentication.JwtBearer;
+// using System.Text;
+// using Microsoft.IdentityModel.Tokens;
+// using Microsoft.OpenApi.Models;
+// using Microsoft.Extensions.Options;
+// using dotnetapp.Data;
+// using System.Security.Cryptography.Xml;
+
+ 
+ 
+// var builder = WebApplication.CreateBuilder(args);
+
+//  builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+
+// builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+// // Register AnnouncementService
+// builder.Services.AddScoped<BookingService>();
+// builder.Services.AddScoped<FeedbackService>();
+// builder.Services.AddScoped<RoomService>();
+// builder.Services.AddScoped<AuthService>();
+// builder.Services.AddScoped<IAuthService,AuthService>();
+// builder.Services.AddAuthentication(options=>
+// {
+//     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+// }).AddJwtBearer(options =>
+// {
+//     options.SaveToken = true;
+//     options.TokenValidationParameters = new TokenValidationParameters()
+//     {
+//         ValidateIssuer = true,
+//         ValidateAudience = true,
+//         ValidAudience = builder.Configuration["JWT:Audience"],
+//         ValidIssuer = builder.Configuration["JWT:Issuer"],
+//         ClockSkew = TimeSpan.Zero,
+//         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+//     };
+// });
+
+// builder.Services.AddControllers();
+// // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddSwaggerGen(c =>
+// {
+//     c.SwaggerDoc("v1", new OpenApiInfo
+//     {
+//         Title = "JWTToken_Auth_API",
+//         Version = "v1"
+//     });
+//     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+//     {
+//         Name = "Authorization",
+//         Type = SecuritySchemeType.ApiKey,
+//         Scheme = "Bearer",
+//         BearerFormat = "JWT",
+//         In = ParameterLocation.Header,
+//         Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the"
+//     });
+//     c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+//         {
+//             new OpenApiSecurityScheme {
+//                 Reference = new OpenApiReference {
+//                     Type = ReferenceType.SecurityScheme,
+//                     Id = "Bearer"
+//                 }
+//             },
+//             new string[]{}
+//         }
+//     });
+// });
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowAll", builder =>
+//     {
+//         builder.AllowAnyOrigin()
+//                .AllowAnyMethod()
+//                .AllowAnyHeader();
+//     });
+// });
+ 
+// var app = builder.Build();
+ 
+// // Configure the HTTP request pipeline.
+// if (app.Environment.IsDevelopment())
+// {
+//     app.UseSwagger();
+//     app.UseSwaggerUI();
+// }
+ 
+// app.UseCors("AllowAll");
+ 
+// app.UseHttpsRedirection();
+ 
+// app.UseAuthorization();
+// app.UseAuthentication();
+ 
+// app.MapControllers();
+ 
+// app.Run();
+
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Options;
+using System.Text;
 using dotnetapp.Data;
-using System.Security.Cryptography.Xml;
-
- 
+using dotnetapp.Models;
+using dotnetapp.Services;
  
 var builder = WebApplication.CreateBuilder(args);
-
- builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
-
-// Register AnnouncementService
-builder.Services.AddScoped<BookingService>();
-builder.Services.AddScoped<FeedbackService>();
-builder.Services.AddScoped<RoomService>();
-builder.Services.AddScoped<AuthService>();
-builder.Services.AddScoped<IAuthService,AuthService>();
-builder.Services.AddAuthentication(options=>
+ 
+builder.Services.AddControllers();
+// Add DbContext
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+ 
+// Add Identity
+// builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+//     .AddEntityFrameworkStores<ApplicationDbContext>()
+//     .AddDefaultTokenProviders();
+ 
+builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+ 
+// Add Authentication - JWT
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+})
+.AddJwtBearer(options =>
 {
-    options.SaveToken = true;
-    options.TokenValidationParameters = new TokenValidationParameters()
+    var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:SecretKey"]);
+ 
+    options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidAudience = builder.Configuration["JWT:Audience"],
-        ValidIssuer = builder.Configuration["JWT:Issuer"],
-        ClockSkew = TimeSpan.Zero,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:SecretKey"]))
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
-
+ 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+ 
+// Add Controllers
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
+ 
+// Swagger + JWT Support
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "JWTToken_Auth_API",
-        Version = "v1"
-    });
-    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
+ 
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = ParameterLocation.Header,
-        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the"
+        Description = "Enter 'Bearer' followed by a space and your token."
     });
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement{
+ 
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
-            new OpenApiSecurityScheme {
-                Reference = new OpenApiReference {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
             },
-            new string[]{}
+            Array.Empty<string>()
         }
     });
 });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder =>
-    {
-        builder.AllowAnyOrigin()
-               .AllowAnyMethod()
-               .AllowAnyHeader();
-    });
-});
+ 
+// Register Custom Services
+builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<AuthService>();
+builder.Services.AddTransient<BookingService>();
+builder.Services.AddTransient<FeedbackService>();
+builder.Services.AddTransient<RoomService>();
+ 
+builder.Services.AddEndpointsApiExplorer();
  
 var app = builder.Build();
  
-// Configure the HTTP request pipeline.
+// Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
  
-app.UseCors("AllowAll");
- 
 app.UseHttpsRedirection();
  
+app.UseCors("AllowAll");
+ 
+app.UseAuthentication();
 app.UseAuthorization();
  
 app.MapControllers();
  
 app.Run();
-
-

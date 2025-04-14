@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace dotnetapp.Controllers
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class RoomController : ControllerBase
@@ -22,6 +23,7 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -54,7 +56,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {
