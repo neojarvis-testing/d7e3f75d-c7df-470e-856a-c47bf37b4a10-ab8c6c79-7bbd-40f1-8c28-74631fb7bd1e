@@ -23,8 +23,14 @@ builder.Services.AddCors(options =>
                .AllowAnyHeader();
     });
 });
+<<<<<<< HEAD
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("con")));
  
+=======
+
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
+
+>>>>>>> 85b80f62e9a3cb8310c108b26b351d14a3ad46f5
 // Register AnnouncementService
 builder.Services.AddScoped<BookingService>();
 builder.Services.AddScoped<FeedbackService>();
