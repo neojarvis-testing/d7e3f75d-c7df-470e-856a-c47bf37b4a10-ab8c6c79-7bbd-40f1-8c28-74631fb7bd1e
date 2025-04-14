@@ -40,10 +40,6 @@ namespace dotnetapp.Models
     public string Facilities { get; set; }
 
     [Required(ErrorMessage = "Image URL is required.")]
-<<<<<<< HEAD
-    [Url(ErrorMessage = "Please provide a valid URL for the image.")][Url(ErrorMessage = "Please provide a valid URL for the image.")]
-=======
->>>>>>> 0d5daa7c606b3d37d235b57a02dc472019587eef
     public string ImageUrl { get; set; }
 
     }
