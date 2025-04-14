@@ -6,6 +6,7 @@ import { Feedback } from '../models/feedback.model'; // Make sure this model is 
 providedIn: 'root'
 })
 export class FeedbackService {
+
 public apiUrl = 'https://8080-your-backend-url.premiumproject.examly.io/api'; // Replace with actual backend URL
 constructor(private http: HttpClient) {}
 private getAuthHeaders(): HttpHeaders {
@@ -14,6 +15,7 @@ return new HttpHeaders({
 Authorization: `Bearer ${token}`,
 'Content-Type': 'application/json'
 });
+
 }
 // Send feedback to the server
 sendFeedback(feedback: Feedback): Observable<Feedback> {
