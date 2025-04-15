@@ -1,0 +1,41 @@
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Equal spacing between elements */
+}
+
+.navbar-user {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.nav-item {
+    margin-right: 15px;
+}
+
+.nav-link, .btn-link {
+    padding: 5px 10px;
+    color: white; /* Style logout button to be white */
+}
+
+.form-select {
+    background: transparent;
+    border: none;
+    color: white;
+    text-align: center;
+}
+
+.form-select-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px; /* Adjust width as needed */
+}
+
+@media (max-width: 992px) {
+    .navbar-user, .nav-item, .form-select {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
