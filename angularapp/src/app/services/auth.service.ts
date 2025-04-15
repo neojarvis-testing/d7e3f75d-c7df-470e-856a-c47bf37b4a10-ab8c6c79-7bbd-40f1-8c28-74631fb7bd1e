@@ -107,7 +107,7 @@ export class AuthService {
   getAuthStateChange(): Observable<void> {
     return this.authStateChanged.asObservable();
   }
-
+}
 
   
   

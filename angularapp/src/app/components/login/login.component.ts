@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
           this.loginSuccess = true;
           // Delay for 3 seconds before redirecting
           setTimeout(() => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/adminviewroom']);
           }, 1000);
         },
         error => {
