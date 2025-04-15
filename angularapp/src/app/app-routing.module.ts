@@ -33,10 +33,10 @@ const routes: Routes = [
   {path: 'useraddfeedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard]},
   {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]},
 
-]
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+ 
+ 
