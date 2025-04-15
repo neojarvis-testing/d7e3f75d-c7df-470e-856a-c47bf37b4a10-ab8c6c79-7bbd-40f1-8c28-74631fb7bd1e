@@ -15,7 +15,7 @@ import { UserviewroomComponent } from './components/userviewroom/userviewroom.co
 import { UserviewmybookingComponent } from './components/userviewmybooking/userviewmybooking.component';
 import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfeedback.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
- 
+
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegistrationComponent},
@@ -32,9 +32,7 @@ const routes: Routes = [
   {path: 'userviewmybooking', component: UserviewmybookingComponent, canActivate: [AuthGuard]},
   {path: 'useraddfeedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard]},
   {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]},
- 
-]
- 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

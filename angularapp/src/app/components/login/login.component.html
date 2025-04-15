@@ -1,11 +1,11 @@
 <div class="login-container">
     <h2>Login</h2>
-    <form (ngSubmit)="handleLogin()">
+    <form (ngSubmit)="login()">
         <label for="username">Username:</label>
         <input 
             type="text" 
             id="username" 
-            [(ngModel)]="username" 
+            [(ngModel)]="user.Email" 
             name="username" 
             placeholder="Enter your username" 
             required 
@@ -15,7 +15,7 @@
         <input 
             type="password" 
             id="password" 
-            [(ngModel)]="password" 
+            [(ngModel)]="user.Password" 
             name="password" 
             placeholder="Enter your password" 
             required 
