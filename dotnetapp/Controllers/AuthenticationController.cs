@@ -41,7 +41,7 @@ namespace dotnetapp.Controllers
                 (int code, string tokenOrMessage) = await _service.Login(loginModel);
                 if(code == 1)
                 {
-                    return Ok(tokenOrMessage);
+                    return Ok(new { token = tokenOrMessage});;
                 }
                 else
                 {
