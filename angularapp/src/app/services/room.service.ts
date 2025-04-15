@@ -8,7 +8,7 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
-  public apiUrl = 'http://8080-your-backend-url.premiumproject.examly.io/api'; 
+  public apiUrl = 'https://8080-adaaebcbceaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; 
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +28,7 @@ export class RoomService {
   }
 
   
-  getRoomById(roomId: string): Observable<Room> {
+  getRoomById(roomId: number): Observable<Room> {
     return this.http.get<Room>(`${this.apiUrl}/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });
@@ -42,14 +42,14 @@ export class RoomService {
   }
 
 
-  updateRoom(roomId: string, room: Room): Observable<Room> {
+  updateRoom(roomId: number, room: Room): Observable<Room> {
     return this.http.put<Room>(`${this.apiUrl}/Room/${roomId}`, room, {
       headers: this.getAuthHeaders(),
     });
   }
 
 
-  deleteRoom(roomId: string): Observable<void> {
+  deleteRoom(roomId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });
@@ -62,7 +62,7 @@ export class RoomService {
     });
   }
 
-  getBookingsByUserId(userId: string): Observable<Booking[]> {
+  getBookingsByUserId(userId: number): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.apiUrl}/Booking/user/${userId}`, {
       headers: this.getAuthHeaders(),
     });
@@ -75,13 +75,13 @@ export class RoomService {
   }
 
 
-  updateBooking(bookingId: string, booking: Booking): Observable<Booking> {
+  updateBooking(bookingId: number, booking: Booking): Observable<Booking> {
     return this.http.put<Booking>(`${this.apiUrl}/Booking/${bookingId}`, booking, {
       headers: this.getAuthHeaders(),
     });
   }
 
-  deleteBooking(bookingId: string): Observable<void> {
+  deleteBooking(bookingId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/Booking/${bookingId}`, {
       headers: this.getAuthHeaders(),
     });
