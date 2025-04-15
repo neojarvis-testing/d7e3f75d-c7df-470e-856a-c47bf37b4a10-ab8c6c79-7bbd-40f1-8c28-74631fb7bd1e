@@ -1,6 +1,6 @@
 <div class="register-container">
     <h2>Register</h2>
-    <form (ngSubmit)="handleRegister()">
+    <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
         <!-- Username field -->
         <label for="username">Username:</label>
         <input 
@@ -10,7 +10,11 @@
             name="username" 
             placeholder="Enter your username" 
             required 
+            #usernameField="ngModel"
         >
+        <div class="error-message" *ngIf="usernameField.invalid && usernameField.touched">
+            Username is required.
+        </div>
 
         <!-- Email field -->
         <label for="email">Email:</label>
@@ -21,7 +25,11 @@
             name="email" 
             placeholder="Enter your email" 
             required 
+            #emailField="ngModel"
         >
+        <div class="error-message" *ngIf="emailField.invalid && emailField.touched">
+            A valid email is required.
+        </div>
 
         <!-- Password field -->
         <label for="password">Password:</label>
@@ -32,7 +40,11 @@
             name="password" 
             placeholder="Enter your password" 
             required 
+            #passwordField="ngModel"
         >
+        <div class="error-message" *ngIf="passwordField.invalid && passwordField.touched">
+            Password is required.
+        </div>
 
         <!-- Confirm password field -->
         <label for="confirm-password">Confirm Password:</label>
@@ -43,7 +55,11 @@
             name="confirmPassword" 
             placeholder="Confirm your password" 
             required 
+            #confirmPasswordField="ngModel"
         >
+        <div class="error-message" *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched">
+            Confirm Password is required.
+        </div>
 
         <!-- Mobile number field -->
         <label for="mobile">Mobile Number:</label>
@@ -54,7 +70,11 @@
             name="mobile" 
             placeholder="Enter your mobile number" 
             required 
+            #mobileField="ngModel"
         >
+        <div class="error-message" *ngIf="mobileField.invalid && mobileField.touched">
+            Mobile Number is required.
+        </div>
 
         <!-- Role dropdown field -->
         <label for="role">Role:</label>
@@ -63,13 +83,17 @@
             [(ngModel)]="role" 
             name="role" 
             required
+            #roleField="ngModel"
         >
             <option value="" disabled selected>Select a role</option>
             <option value="user">User</option>
             <option value="admin">Admin</option>
         </select>
+        <div class="error-message" *ngIf="roleField.invalid && roleField.touched">
+            Role selection is required.
+        </div>
 
         <!-- Submit button -->
-        <button type="submit">Register</button>
+        <button type="submit" [disabled]="registerForm.invalid">Register</button>
     </form>
 </div>

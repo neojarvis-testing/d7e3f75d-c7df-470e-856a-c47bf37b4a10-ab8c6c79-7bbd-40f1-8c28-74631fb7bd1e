@@ -1,24 +1,40 @@
 /* Reset some basics */
 
-* {
+html, body {
 
   margin: 0;
  
-  padding: 1;
+  padding: 0;
  
-  
+  box-sizing: border-box;
+ 
+  font-family: 'Segoe UI', Roboto, sans-serif;
+ 
+  scroll-behavior: smooth;
+ 
+  background-color: #fdfdfd;
+ 
+ }
+ 
+ *, *::before, *::after {
+ 
+  margin: 0;
+ 
+  padding: 0;
+ 
+  box-sizing: inherit;
  
  }
  
  
  
- .home-container {
+ /* Home Container */
  
-  font-family: sans-serif;
+ .home-container {
  
   color: #333;
  
-  background-color: #fafafa;
+  background-color: #fefefe;
  
   overflow-x: hidden;
  
@@ -40,8 +56,6 @@
  
  }
  
- 
- 
  .image-container img {
  
   width: 100%;
@@ -50,11 +64,9 @@
  
   object-fit: cover;
  
-  animation: zoomIn 10s ease-in-out infinite alternate;
+  animation: zoomIn 12s ease-in-out infinite alternate;
  
  }
- 
- 
  
  @keyframes zoomIn {
  
@@ -66,13 +78,11 @@
  
   to {
  
-   transform: scale(1.05);
+   transform: scale(1.08);
  
   }
  
  }
- 
- 
  
  .text-overlay {
  
@@ -84,39 +94,41 @@
  
   transform: translate(-50%, -50%);
  
-  color: white;
+  color: #fff;
  
   text-align: center;
  
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
  
-  padding: 20px 40px;
+  padding: 30px 50px;
  
-  border-radius: 10px;
+  border-radius: 16px;
  
-  animation: fadeIn 2s ease;
+  backdrop-filter: blur(4px);
+ 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+ 
+  animation: fadeIn 2.5s ease;
  
  }
- 
- 
  
  .text-overlay h1 {
  
-  font-size: 3rem;
+  font-size: 3.5rem;
  
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+ 
+  letter-spacing: 1px;
  
  }
- 
- 
  
  .text-overlay p {
  
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+ 
+  line-height: 1.6;
  
  }
- 
- 
  
  @keyframes fadeIn {
  
@@ -144,7 +156,7 @@
  
  .home-content {
  
-  padding: 40px 20px;
+  padding: 60px 20px;
  
   text-align: center;
  
@@ -154,33 +166,33 @@
  
  }
  
- 
- 
  .home-content h2 {
  
-  font-size: 2rem;
+  font-size: 2.5rem;
  
-  margin-bottom: 10px;
+  margin-bottom: 20px;
  
  }
- 
- 
  
  .home-content p {
  
-  font-size: 1.1rem;
+  font-size: 1.2rem;
  
-  color: #555;
+  color: #666;
+ 
+  max-width: 800px;
+ 
+  margin: 0 auto;
+ 
+  line-height: 1.6;
  
  }
- 
- 
  
  @keyframes slideUp {
  
   from {
  
-   transform: translateY(20px);
+   transform: translateY(30px);
  
    opacity: 0;
  
@@ -204,47 +216,45 @@
  
   display: flex;
  
-  justify-content: space-around;
- 
-  padding: 40px 20px;
- 
-  background-color: #fff;
+  justify-content: center;
  
   flex-wrap: wrap;
  
-  gap: 20px;
+  gap: 30px;
+ 
+  padding: 60px 20px;
+ 
+  background-color: #fff;
  
  }
- 
- 
  
  .feature {
  
   flex: 1;
  
-  min-width: 200px;
+  min-width: 240px;
  
-  max-width: 300px;
+  max-width: 320px;
  
-  background: lightblue;
+  background: #e9f0f7;
  
-  padding: 20px;
+  padding: 30px 20px;
  
-  border-radius: 12px;
+  border-radius: 20px;
  
   text-align: center;
  
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+ 
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
  
  }
  
- 
- 
  .feature:hover {
  
-  transform: translateY(-5px);
+  transform: translateY(-8px);
  
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
  
  }
  
@@ -254,27 +264,27 @@
  
  .gallery {
  
-  padding: 40px 20px;
+  padding: 60px 20px;
  
   text-align: center;
  
+  background-color: #fafafa;
+ 
  }
- 
- 
  
  .gallery h2 {
  
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+ 
+  font-size: 2.3rem;
  
  }
- 
- 
  
  .gallery-images {
  
   display: flex;
  
-  gap: 20px;
+  gap: 24px;
  
   justify-content: center;
  
@@ -282,27 +292,27 @@
  
  }
  
- 
- 
  .gallery-images img {
  
-  width: 300px;
+  width: 320px;
  
-  height: 200px;
+  height: 220px;
  
   object-fit: cover;
  
-  border-radius: 12px;
+  border-radius: 16px;
  
-  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+ 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
  
  }
- 
- 
  
  .gallery-images img:hover {
  
   transform: scale(1.05);
+ 
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
  
  }
  
@@ -312,7 +322,7 @@
  
  .reviews {
  
-  padding: 40px 20px;
+  padding: 60px 20px;
  
   background-color: #fff;
  
@@ -320,7 +330,11 @@
  
  }
  
+ .reviews h2 {
  
+  font-size: 2.3rem;
+ 
+ }
  
  .reviews-container {
  
@@ -332,25 +346,31 @@
  
   gap: 30px;
  
-  margin-top: 20px;
+  margin-top: 30px;
  
  }
- 
- 
  
  .review {
  
   max-width: 300px;
  
-  background-color: #f9f9f9;
+  background-color: #f1f3f5;
  
-  padding: 20px;
+  padding: 25px;
  
-  border-radius: 10px;
+  border-radius: 16px;
  
   font-style: italic;
  
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ 
+  transition: transform 0.3s ease;
+ 
+ }
+ 
+ .review:hover {
+ 
+  transform: translateY(-5px);
  
  }
  
@@ -360,47 +380,53 @@
  
  .home-footer {
  
-  background-color: rgb(30, 88, 123);
+  background-color: #1f1d2d;
  
-  color: white;
+  color: #dcdcdc;
  
   text-align: center;
  
-  padding: 40px 20px;
+  padding: 50px 20px;
+ 
+  line-height: 1.9;
  
  }
  
+ .home-footer h3 {
  
+  font-size: 1.5rem;
+ 
+  margin-bottom: 20px;
+ 
+ }
  
  .home-footer form {
  
-  margin-top: 20px;
+  margin-top: 30px;
  
  }
  
- 
- 
  .home-footer input[type="email"] {
  
-  padding: 10px;
+  padding: 12px 16px;
  
   border: none;
  
-  border-radius: 6px;
+  border-radius: 8px;
  
   width: 250px;
  
   max-width: 80%;
  
-  margin-right: 10px;
+  margin-right: 12px;
+ 
+  font-size: 1rem;
  
  }
  
- 
- 
  .home-footer button {
  
-  padding: 10px 20px;
+  padding: 12px 20px;
  
   background-color: #3f51b5;
  
@@ -408,15 +434,15 @@
  
   border: none;
  
-  border-radius: 6px;
+  border-radius: 8px;
  
   cursor: pointer;
  
   transition: background-color 0.3s ease;
  
+  font-size: 1rem;
+ 
  }
- 
- 
  
  .home-footer button:hover {
  
@@ -424,4 +450,14 @@
  
  }
  
+ .home-footer form input[type="email"],
  
+ .home-footer form button {
+ 
+  margin-bottom: 12px;
+ 
+ }
+ 
+ 
+ 
+  

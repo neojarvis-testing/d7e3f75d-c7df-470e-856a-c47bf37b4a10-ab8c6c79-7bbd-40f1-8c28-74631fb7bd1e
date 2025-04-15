@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 nav {
 
@@ -21,11 +26,11 @@ nav {
  
  
  
- .app-logo img {
+ .app-logo  {
  
-  height: 40px;
  
-  width: auto;
+  color: white;
+
  
  }
  
