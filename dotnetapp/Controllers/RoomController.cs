@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
-        [Authorize(Roles = "ADMIN")]
+       // [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -56,7 +56,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        [Authorize(Roles = "ADMIN")]
+        // [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {

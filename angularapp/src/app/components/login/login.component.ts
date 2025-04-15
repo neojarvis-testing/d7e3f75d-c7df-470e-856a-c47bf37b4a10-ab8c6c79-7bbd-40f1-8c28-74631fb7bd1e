@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   username: string = '';
   password: string = '';
+  role: string ='';
 
   constructor(private router: Router) { }
 

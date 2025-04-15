@@ -1,6 +1,6 @@
 <div class="login-container">
     <h2>Login</h2>
-    <form (ngSubmit)="handleLogin()">
+    <form #loginForm="ngForm" (ngSubmit)="handleLogin()">
         <label for="username">Username:</label>
         <input 
             type="text" 
@@ -8,8 +8,13 @@
             [(ngModel)]="username" 
             name="username" 
             placeholder="Enter your username" 
-            required 
+            required
+            #usernameField="ngModel"
         >
+        <!-- Error message for username -->
+        <div *ngIf="usernameField.touched && usernameField.invalid" class="error">
+            Username is required.
+        </div>
 
         <label for="password">Password:</label>
         <input 
@@ -18,10 +23,32 @@
             [(ngModel)]="password" 
             name="password" 
             placeholder="Enter your password" 
-            required 
+            required
+            #passwordField="ngModel"
         >
+        <!-- Error message for password -->
+        <div *ngIf="passwordField.touched && passwordField.invalid" class="error">
+            Password is required.
+        </div>
 
-        <button type="submit">Login</button>
+        <label for="role">Role:</label>
+        <select 
+            id="role" 
+            [(ngModel)]="role" 
+            name="role" 
+            required
+            #roleField="ngModel"
+        >
+            <option value="" disabled selected>Select your role</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+        </select>
+        <!-- Error message for role -->
+        <div *ngIf="roleField.touched && roleField.invalid" class="error">
+            Role is required.
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
     <p>
         Don't have an account? 
