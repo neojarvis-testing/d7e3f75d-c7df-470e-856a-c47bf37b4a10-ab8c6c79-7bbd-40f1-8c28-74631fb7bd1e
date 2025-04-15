@@ -1,7 +1,7 @@
 import { Injectable, Optional } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../models/login.model';
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,7 @@ import { Login } from '../models/login.model';
 export class AuthService {
   public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
   private currentUserRole = new BehaviorSubject<string | null>(null);
+  private authStateChanged = new Subject<void>();
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
@@ -28,6 +29,7 @@ export class AuthService {
           localStorage.setItem('userName', userName);
           this.currentUserRole.next(role);
           observer.next(response);
+          this.authStateChanged.next();  // Notify about auth state change
           observer.complete();
         },
         error => {
@@ -102,5 +104,9 @@ export class AuthService {
     const role = this.getUserRole();
     return role === 'USER';
   }
+  getAuthStateChange(): Observable<void> {
+    return this.authStateChanged.asObservable();
+  }
+
 }
  
