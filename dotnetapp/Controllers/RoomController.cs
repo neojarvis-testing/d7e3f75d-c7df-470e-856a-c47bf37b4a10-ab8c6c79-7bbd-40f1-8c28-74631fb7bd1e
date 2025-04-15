@@ -65,7 +65,7 @@ namespace dotnetapp.Controllers
                 bool result = await _roomService.AddRoom(room);
                 if (result)
                 {
-                    return Ok("Room added successfully");
+                    return StatusCode(200,"Room added successfully");
                 }
                 else
                 {

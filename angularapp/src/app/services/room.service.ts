@@ -10,6 +10,7 @@ import { Booking } from '../models/booking.model';
 export class RoomService {
   public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
 
+
   constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
