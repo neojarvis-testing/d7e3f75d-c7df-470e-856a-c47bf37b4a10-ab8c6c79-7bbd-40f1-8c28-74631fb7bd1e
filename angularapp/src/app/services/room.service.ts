@@ -8,8 +8,8 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
+  
   public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
-
 
   constructor(private http: HttpClient) {}
 

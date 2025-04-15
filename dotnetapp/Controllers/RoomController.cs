@@ -23,6 +23,7 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
+
         // [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()

@@ -8,7 +8,9 @@ providedIn: 'root'
 export class FeedbackService {
 
 public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; // Replace with actual backend URL
+
 constructor(private http: HttpClient) {}
+
 private getAuthHeaders(): HttpHeaders {
 const token = localStorage.getItem('token');
 return new HttpHeaders({
