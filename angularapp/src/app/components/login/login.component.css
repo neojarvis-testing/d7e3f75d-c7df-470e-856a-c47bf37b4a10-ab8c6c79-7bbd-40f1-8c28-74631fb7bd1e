@@ -36,6 +36,25 @@
   box-sizing: border-box;
 }
 
+/* Select field styles */
+.login-container select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  font-size: 16px;
+}
+
+/* Option styles */
+.login-container select option {
+  background-color: white;
+  color: black;
+}
+
 /* Button styles */
 .login-container button {
   width: 100%;
@@ -81,4 +100,11 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f0f0f0;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem; /* Reduced font size */
+  margin-top: 4px;
+  margin-bottom: 8px; /* Added space at the bottom */
 }

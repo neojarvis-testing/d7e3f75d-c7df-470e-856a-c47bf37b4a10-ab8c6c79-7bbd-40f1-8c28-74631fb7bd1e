@@ -77,3 +77,15 @@ body {
   height: 100vh;
   background-color: #f0f0f0;
 }
+
+.error-message {
+  color: red;
+  font-size: 0.8em; /* Reduced font size */
+  margin-top: 8px; /* Increased spacing above the error text */
+  margin-bottom: 12px; /* Additional spacing below the error text */
+}
+
+input.ng-invalid.ng-touched, 
+select.ng-invalid.ng-touched {
+  border-color: red;
+}
