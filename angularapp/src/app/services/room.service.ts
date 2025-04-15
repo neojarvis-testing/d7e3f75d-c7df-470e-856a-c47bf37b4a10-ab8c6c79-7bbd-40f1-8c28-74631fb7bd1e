@@ -8,7 +8,8 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
-  public apiUrl = 'https://8080-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; 
+  
+  public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
 
   constructor(private http: HttpClient) {}
 
@@ -22,67 +23,69 @@ export class RoomService {
 
   
   getAllRooms(): Observable<Room[]> {
-    return this.http.get<Room[]>(`${this.apiUrl}/Room`, {
+    return this.http.get<Room[]>(`${this.apiUrl}/api/Room`, {
       headers: this.getAuthHeaders(),
     });
   }
 
   
   getRoomById(roomId: number): Observable<Room> {
-    return this.http.get<Room>(`${this.apiUrl}/Room/${roomId}`, {
+    return this.http.get<Room>(`${this.apiUrl}/api/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
   
   addRoom(room: Room): Observable<Room> {
-    return this.http.post<Room>(`${this.apiUrl}/Room`, room, {
+    return this.http.post<Room>(`${this.apiUrl}/api/Room`, room, {
       headers: this.getAuthHeaders(),
     });
   }
 
 
   updateRoom(roomId: number, room: Room): Observable<Room> {
-    return this.http.put<Room>(`${this.apiUrl}/Room/${roomId}`, room, {
+    return this.http.put<Room>(`${this.apiUrl}/api/Room/${roomId}`, room, {
       headers: this.getAuthHeaders(),
     });
   }
 
 
   deleteRoom(roomId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/Room/${roomId}`, {
+    return this.http.delete<void>(`${this.apiUrl}/api/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
 
   getAllBookings(): Observable<Booking[]> {
-    return this.http.get<Booking[]>(`${this.apiUrl}/Booking`, {
+    return this.http.get<Booking[]>(`${this.apiUrl}/api/Booking`, {
       headers: this.getAuthHeaders(),
     });
   }
 
+
   getBookingsByUserId(userId: number): Observable<Booking[]> {
-    return this.http.get<Booking[]>(`${this.apiUrl}/Booking/user/${userId}`, {
+    return this.http.get<Booking[]>(`${this.apiUrl}/api/Booking/user/${userId}`, {
       headers: this.getAuthHeaders(),
     });
   }
 
   addBooking(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(`${this.apiUrl}/Booking`, booking, {
+    return this.http.post<Booking>(`${this.apiUrl}/api/Booking`, booking, {
       headers: this.getAuthHeaders(),
     });
   }
 
 
   updateBooking(bookingId: number, booking: Booking): Observable<Booking> {
-    return this.http.put<Booking>(`${this.apiUrl}/Booking/${bookingId}`, booking, {
+    return this.http.put<Booking>(`${this.apiUrl}/api/Booking/${bookingId}`, booking, {
       headers: this.getAuthHeaders(),
     });
   }
 
+
   deleteBooking(bookingId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/Booking/${bookingId}`, {
+    return this.http.delete<void>(`${this.apiUrl}/api/Booking/${bookingId}`, {
       headers: this.getAuthHeaders(),
     });
   }

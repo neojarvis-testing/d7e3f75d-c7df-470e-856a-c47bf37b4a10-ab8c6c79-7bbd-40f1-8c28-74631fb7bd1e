@@ -23,7 +23,8 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
-       // [Authorize(Roles = "ADMIN")]
+
+        // [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -65,7 +66,7 @@ namespace dotnetapp.Controllers
                 bool result = await _roomService.AddRoom(room);
                 if (result)
                 {
-                    return Ok("Room added successfully");
+                    return StatusCode(200,"Room added successfully");
                 }
                 else
                 {
