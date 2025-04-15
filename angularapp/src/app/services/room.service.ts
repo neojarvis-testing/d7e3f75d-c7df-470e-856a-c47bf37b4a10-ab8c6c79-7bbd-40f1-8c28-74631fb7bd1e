@@ -8,7 +8,12 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
+<<<<<<< HEAD
   public apiUrl = 'https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
+=======
+  public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
+
+>>>>>>> f973d55d1ff40916dd27614cd7702b783d63db3e
 
   constructor(private http: HttpClient) {}
 
@@ -62,6 +67,7 @@ export class RoomService {
     });
   }
 
+
   getBookingsByUserId(userId: number): Observable<Booking[]> {
     return this.http.get<Booking[]>(`${this.apiUrl}/api/Booking/user/${userId}`, {
       headers: this.getAuthHeaders(),
@@ -80,6 +86,7 @@ export class RoomService {
       headers: this.getAuthHeaders(),
     });
   }
+
 
   deleteBooking(bookingId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/api/Booking/${bookingId}`, {
