@@ -57,7 +57,7 @@ namespace dotnetapp.Controllers
             }
         }
 
-        // [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {

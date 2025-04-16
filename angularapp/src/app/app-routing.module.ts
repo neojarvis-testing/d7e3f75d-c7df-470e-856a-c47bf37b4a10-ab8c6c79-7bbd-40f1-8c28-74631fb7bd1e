@@ -32,8 +32,14 @@ const routes: Routes = [
   {path: 'userviewmybooking', component: UserviewmybookingComponent, canActivate: [AuthGuard]},
   {path: 'useraddfeedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard]},
   {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]}
+<<<<<<< HEAD
 ];
   
+=======
+]
+
+
+>>>>>>> 4f6c139976ec5ae6fc2606428bff1eb08c8ef0a8
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
