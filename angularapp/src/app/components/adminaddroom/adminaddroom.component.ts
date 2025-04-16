@@ -69,11 +69,10 @@ export class AdminaddroomComponent implements OnInit {
           this.roomService.addRoom(this.room).subscribe({
             
             next: () => {
-              // this.showSuccessModal();
+              this.showSuccessModal();
               this.resetRoom();
-              console.log("Hereeeeeee2");
               this.roomForm.resetForm();
-              this.router.navigate([`/adminviewroom`])
+              // this.router.navigate([`/adminviewroom`])
             },
             error: (err) => {
               console.log("Hereeeeeee1")
