@@ -8,13 +8,19 @@ import { Login } from '../models/login.model';
 })
 export class AuthService {
   public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+  
   private currentUserRole = new BehaviorSubject<string | null>(null);
+  private currentUserId = new BehaviorSubject<number | null>(null);
+  // currentUserId: number;
   private authStateChanged = new Subject<void>();
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
       this.currentUserRole.next(this.getUserRoleFromToken(token));
+      // this.currentUserId.next(parseInt(this.getUserIdFromToken(token)));
+      // console.log("Auth Service: "+ this.currentUserId);
     }
+    // this.loadInitialUserData();
   }
   login(credentials: Login): Observable<any> {
     return new Observable(observer => {
@@ -83,8 +89,8 @@ export class AuthService {
   getUserNameFromToken(token: string): string {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      const userId = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
-      return userId || null;
+      const userName = payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+      return userName || null;
     } catch (error) {
       console.error("Error decoding token:", error);
       return null;
@@ -107,7 +113,25 @@ export class AuthService {
   getAuthStateChange(): Observable<void> {
     return this.authStateChanged.asObservable();
   }
+  getCurrentUserId(): Observable<number | null> {
+    // this.currentUserId = parseInt(localStorage.getItem("UserId"));
+    // this.currentUserId.next(parseInt(this.getUserIdFromToken(token)));
+    console.log("Auth Seer: "+ this.currentUserId);
+    return this.currentUserId.asObservable();
+  }
+  // private loadInitialUserData() {
+  //   const token = localStorage.getItem("token");
+  //   if (token) {
+  //     const decodedToken = this.decodeToken(token);
+  //     this.currentUserRole.next(decodedToken.role || null);
+  //     this.currentUserId.next(decodedToken.sub ? parseInt(decodedToken.sub, 10) : null);
+  //   }
+  // }
+  private decodeToken(token: string): any {
+    const payload = token.split('.')[1];
+    return JSON.parse(atob(payload));
+  }
+ 
+ 
 }
-  
-  
  

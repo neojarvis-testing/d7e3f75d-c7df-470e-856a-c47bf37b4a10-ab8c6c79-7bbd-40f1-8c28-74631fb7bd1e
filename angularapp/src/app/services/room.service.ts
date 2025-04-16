@@ -8,6 +8,7 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
+
   public apiUrl = 'https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
 
 
@@ -72,7 +73,7 @@ export class RoomService {
   }
 
   addBooking(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(`${this.apiUrl}/api/Booking`, booking, {
+    return this.http.post<Booking>(`${this.apiUrl}/api/Booking`,booking, {
       headers: this.getAuthHeaders(),
     });
   }
