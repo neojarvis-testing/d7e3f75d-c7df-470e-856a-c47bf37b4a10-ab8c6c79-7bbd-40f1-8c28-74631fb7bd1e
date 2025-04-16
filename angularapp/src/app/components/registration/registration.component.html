@@ -1,5 +1,5 @@
 <div class="register-container">
-    <h2>Register</h2>
+    <h2>Registration</h2>
     <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
         <!-- Username field -->
         <label for="username">Username:</label>
@@ -86,8 +86,8 @@
             #roleField="ngModel"
         >
             <option value="" disabled selected>Select a role</option>
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
         </select>
         <div class="error-message" *ngIf="roleField.invalid && roleField.touched">
             Role selection is required.
