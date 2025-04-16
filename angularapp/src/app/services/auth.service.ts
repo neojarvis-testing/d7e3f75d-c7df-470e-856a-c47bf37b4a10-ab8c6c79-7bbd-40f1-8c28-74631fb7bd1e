@@ -1,13 +1,13 @@
 import { Injectable, Optional } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../models/login.model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+  public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private authStateChanged = new Subject<void>();
   constructor(private http: HttpClient) {
@@ -98,17 +98,16 @@ export class AuthService {
   }
   isAdmin(): boolean {
     const role = this.getUserRole();
-    return role === 'ADMIN';
+    return role === 'Admin';
   }
   isUser(): boolean {
     const role = this.getUserRole();
-    return role === 'USER';
+    return role === 'User';
   }
   getAuthStateChange(): Observable<void> {
     return this.authStateChanged.asObservable();
   }
 }
-
   
   
  
