@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'userviewroom', component: UserviewroomComponent, canActivate: [AuthGuard]},
   {path: 'userviewmybooking', component: UserviewmybookingComponent, canActivate: [AuthGuard]},
   {path: 'useraddfeedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard]},
-  {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]},
+  {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]}
 ]
 
 
