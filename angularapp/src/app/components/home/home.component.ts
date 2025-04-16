@@ -17,27 +17,27 @@ export class HomeComponent implements AfterViewInit {
 
  ngAfterViewInit() {
 
-  const observer = new IntersectionObserver((entries) => {
+//   const observer = new IntersectionObserver((entries) => {
 
-   entries.forEach(entry => {
+//    entries.forEach(entry => {
 
-    if (entry.isIntersecting) {
+//     if (entry.isIntersecting) {
 
-     entry.target.classList.add('visible');
+//      entry.target.classList.add('visible');
 
-    }
+//     }
 
-   });
+//    });
 
-  }, { threshold: 0.1 });
+//   }, { threshold: 0.1 });
 
 
 
-  document.querySelectorAll('section').forEach(section => {
+//   document.querySelectorAll('section').forEach(section => {
 
-   observer.observe(section);
+//    observer.observe(section);
 
-  });
+//   });
 
  }
 

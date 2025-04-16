@@ -16,9 +16,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
  
 // Add Identity
-// builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-//     .AddEntityFrameworkStores<ApplicationDbContext>()
-//     .AddDefaultTokenProviders();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
  
 builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
  
