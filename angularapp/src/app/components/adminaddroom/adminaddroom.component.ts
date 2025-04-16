@@ -67,12 +67,16 @@ export class AdminaddroomComponent implements OnInit {
           this.errorMessage = 'Total number of rooms for this hotel cannot exceed 10.';
         } else {
           this.roomService.addRoom(this.room).subscribe({
+            
             next: () => {
-              this.showSuccessModal();
+              // this.showSuccessModal();
               this.resetRoom();
+              console.log("Hereeeeeee2");
               this.roomForm.resetForm();
+              this.router.navigate([`/adminviewroom`])
             },
             error: (err) => {
+              console.log("Hereeeeeee1")
               this.errorMessage = err.error.Message;
             }
           });
