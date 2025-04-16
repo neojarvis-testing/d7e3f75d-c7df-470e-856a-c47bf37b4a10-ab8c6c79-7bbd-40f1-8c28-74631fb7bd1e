@@ -36,7 +36,7 @@ export class AdmineditroomComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.roomId =+ params['roomId'];
+      this.roomId =+ params['id'];
       console.log(this.roomId);
       if (this.roomId) {
         this.roomService.getRoomById(this.roomId).subscribe(r => {

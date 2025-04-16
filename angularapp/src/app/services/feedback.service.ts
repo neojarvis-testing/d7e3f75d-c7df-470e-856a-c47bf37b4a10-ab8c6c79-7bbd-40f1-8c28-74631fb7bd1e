@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Feedback } from '../models/feedback.model'; // Make sure this model is defined
+
 @Injectable({
 providedIn: 'root'
 })
 export class FeedbackService {
 
-public apiUrl = 'https://8080-adaaebcbceaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; // Replace with actual backend URL
+public apiUrl = 'https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; // Replace with actual backend URL
 
 constructor(private http: HttpClient) {}
 

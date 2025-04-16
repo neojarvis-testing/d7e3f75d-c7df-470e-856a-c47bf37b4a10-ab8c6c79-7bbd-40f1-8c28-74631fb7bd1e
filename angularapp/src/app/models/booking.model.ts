@@ -1,6 +1,5 @@
 export interface Booking 
 {
-    Room?: any;
     BookingId?: number;
     UserId: number;
     RoomId: number;
