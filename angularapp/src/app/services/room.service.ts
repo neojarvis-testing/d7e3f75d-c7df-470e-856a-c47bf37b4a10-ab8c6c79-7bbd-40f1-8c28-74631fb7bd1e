@@ -51,6 +51,7 @@ export class RoomService {
 
 
   deleteRoom(roomId: number): Observable<void> {
+    
     return this.http.delete<void>(`${this.apiUrl}/api/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });

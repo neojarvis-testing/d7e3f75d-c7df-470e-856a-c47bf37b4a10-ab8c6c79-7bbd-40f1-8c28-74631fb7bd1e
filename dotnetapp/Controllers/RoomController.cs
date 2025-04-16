@@ -47,7 +47,7 @@ namespace dotnetapp.Controllers
                 var room = await _roomService.GetRoomById(roomId);
                 if (room == null)
                 {
-                    return NotFound("Cannot find any room");
+                    return NotFound(new {Message = "Cannot find any room"});
                 }
                 return Ok(room);
             }
@@ -57,7 +57,8 @@ namespace dotnetapp.Controllers
             }
         }
 
-        //[Authorize(Roles = "Admin")]
+
+        // [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {
@@ -66,7 +67,8 @@ namespace dotnetapp.Controllers
                 bool result = await _roomService.AddRoom(room);
                 if (result)
                 {
-                    return StatusCode(200,"Room added successfully");
+                    // return StatusCode(200,"Room added successfully");
+                    return Ok(new {Message = "Room added successfully"});
                 }
                 else
                 {
@@ -91,11 +93,11 @@ namespace dotnetapp.Controllers
                 bool updated = await _roomService.UpdateRoom(roomId, room);
                 if (updated)
                 {
-                    return Ok("Room updated successfully");
+                    return Ok(new {Message = "Room updated successfully"});
                 }
                 else
                 {
-                    return NotFound("Cannot find any room");
+                    return NotFound(new {Message = "Cannot find any room"});
                 }
             }
             catch (RoomException rex)
@@ -116,11 +118,11 @@ namespace dotnetapp.Controllers
                 bool deleted = await _roomService.DeleteRoom(roomId);
                 if (deleted)
                 {
-                    return Ok("Room deleted successfully");
+                    return Ok(new {Message = "Room deleted successfully"});
                 }
                 else
                 {
-                    return NotFound("Cannot find any room");
+                    return NotFound(new {Message = "Cannot find any room"});
                 }
             }
             catch (RoomException rex)
