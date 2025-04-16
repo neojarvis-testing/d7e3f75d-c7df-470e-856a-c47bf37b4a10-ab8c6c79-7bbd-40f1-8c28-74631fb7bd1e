@@ -72,21 +72,29 @@ export class UseraddbookingComponent implements OnInit {
   }
 
   addBooking() {
+    console.log("Addddd1");
     this.validateDates();
     if (this.dateError) {
       return;
     }
     if (this.isValidBookingForm()) {
+      console.log("Addddd2");
       this.roomService.addBooking(this.booking).subscribe({
         next: () => {
+          console.log("Addddd3");
           this.showSuccessModal();
           this.resetBooking();
           this.bookingForm.resetForm();
         },
         error: (err) => {
+          console.log("Adddd4")
           this.errorMessage = err.error.Message;
+          console.log(this.errorMessage);
         }
       });
+      // this.roomService.addBooking(this.booking).subscribe(() => {
+      //   this.router.navigate([`/userviewroom`]);
+      // });
     } else {
       this.errorMessage = "Please fill in all required fields.";
     }

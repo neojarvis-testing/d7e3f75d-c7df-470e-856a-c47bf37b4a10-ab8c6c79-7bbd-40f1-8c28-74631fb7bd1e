@@ -45,11 +45,11 @@ namespace dotnetapp.Controllers
                 var result = await _bookingService.AddBooking(booking);
                 if (result)
                 {
-                    return Ok("Booking added successfully");
+                    return Ok(new {Message = "Booking added successfully"});
                 }
                 else
                 {
-                    return BadRequest("Failed to add booking");
+                    return BadRequest(new {Message = "Failed to add booking"});
                 }
             }
             catch (Exception ex)
