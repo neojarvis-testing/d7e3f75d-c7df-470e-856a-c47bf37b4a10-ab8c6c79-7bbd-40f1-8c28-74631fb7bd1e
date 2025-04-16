@@ -7,7 +7,7 @@ providedIn: 'root'
 })
 export class FeedbackService {
 
-public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; // Replace with actual backend URL
+public apiUrl = 'https://8080-adaaebcbceaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api'; // Replace with actual backend URL
 
 constructor(private http: HttpClient) {}
 
