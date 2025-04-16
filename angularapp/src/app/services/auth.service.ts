@@ -24,9 +24,9 @@ export class AuthService {
           const role = this.getUserRoleFromToken(response.token);
           const userId = this.getUserIdFromToken(response.token);
           const userName = this.getUserNameFromToken(response.token);
-          localStorage.setItem('userRole', role);
+          localStorage.setItem('role', role);
           localStorage.setItem('userId', userId);
-          localStorage.setItem('userName', userName);
+          localStorage.setItem('name', userName);
           this.currentUserRole.next(role);
           observer.next(response);
           this.authStateChanged.next();  // Notify about auth state change
@@ -50,15 +50,15 @@ export class AuthService {
   }
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('userRole');
+    localStorage.removeItem('role');
     localStorage.removeItem('userId');
     this.currentUserRole.next(null);
   }
   getUserRole(): string | null {
-    return localStorage.getItem('userRole');
+    return localStorage.getItem('role');
   }
   setUserRole(role: string): void {
-    localStorage.setItem('userRole', role);
+    localStorage.setItem('role', role);
   }
   getUserRoleFromToken(token: string): string {
     try {

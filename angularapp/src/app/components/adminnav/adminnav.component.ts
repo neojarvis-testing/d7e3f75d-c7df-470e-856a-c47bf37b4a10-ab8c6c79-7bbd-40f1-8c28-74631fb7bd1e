@@ -13,16 +13,16 @@ export class AdminnavComponent implements OnInit {
   userId: number = Number(localStorage.getItem('userid'));
 
   constructor(private authService: AuthService, private router: Router) {
-    this.checkAdminRole();
+    // this.checkAdminRole();
   }
 
   ngOnInit(): void {}
 
-  checkAdminRole(): void {
-    if (this.userRole !== 'Admin') {
-      this.router.navigate(['/home']);
-    }
-  }
+  // checkAdminRole(): void {
+  //   if (this.userRole !== 'Admin') {
+  //     this.router.navigate(['/home']);
+  //   }
+  // }
 
   onRoomOptionChange(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
