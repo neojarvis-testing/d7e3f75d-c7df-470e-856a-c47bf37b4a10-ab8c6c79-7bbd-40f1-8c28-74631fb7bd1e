@@ -98,11 +98,11 @@ export class AuthService {
   }
   isAdmin(): boolean {
     const role = this.getUserRole();
-    return role === 'ADMIN';
+    return role === 'Admin';
   }
   isUser(): boolean {
     const role = this.getUserRole();
-    return role === 'USER';
+    return role === 'User';
   }
   getAuthStateChange(): Observable<void> {
     return this.authStateChanged.asObservable();
