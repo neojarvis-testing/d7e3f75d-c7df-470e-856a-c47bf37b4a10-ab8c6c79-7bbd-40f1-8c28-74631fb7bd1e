@@ -3,6 +3,8 @@ import { Feedback } from 'src/app/models/feedback.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 declare var bootstrap: any;
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-userviewfeedback',
@@ -27,12 +29,43 @@ export class UserviewfeedbackComponent implements OnInit {
   {
     this.loadUserFeedback();
   }
-
   loadUserFeedback(): void {
-    this.feedbackService.getAllFeedbacksByUserId(this.userId).subscribe((res) => {
-      this.feedbacks = res;
-    })
+    // Show loading spinner
+    Swal.fire({
+      title: 'Loading feedback...',
+      text: 'Please wait while we load your feedback.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  
+    this.feedbackService.getAllFeedbacksByUserId(this.userId).subscribe(
+      (res) => {
+        this.feedbacks = res;
+        Swal.close(); // Close the loading spinner
+  
+        if (this.feedbacks.length === 0) {
+          Swal.fire({
+            icon: 'info',
+            title: 'No Data',
+            text: 'No feedback available.'
+          });
+        }
+      },
+      (error) => {
+        console.error('Error loading feedback', error);
+        // Optionally, you can log the error or handle it silently
+        Swal.close(); // Close the loading spinner even if there's an error
+        Swal.fire({
+          icon: 'info',
+          title: 'No Data',
+          text: 'No feedback available.'
+        });
+      }
+    );
   }
+  
 
 confirmDelete(feedback: Feedback): void {
   this.feedbackToDelete = feedback;
