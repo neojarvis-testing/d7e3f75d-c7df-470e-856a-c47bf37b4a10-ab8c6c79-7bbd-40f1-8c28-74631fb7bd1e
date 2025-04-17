@@ -19,13 +19,14 @@ namespace dotnetapp.Services
 
         public async Task<IEnumerable<Feedback>> GetAllFeedbacks()
         {
-            return await _context.Feedbacks.ToListAsync();
+            return await _context.Feedbacks.Include(u=>u.User).ToListAsync();
         }
 
         public async Task<IEnumerable<Feedback>> GetFeedbacksByUserId(int userId)
         {
             return await _context.Feedbacks
                 .Where(f => f.UserId == userId)
+                .Include(f =>f.User)
                 .ToListAsync();
         }
 

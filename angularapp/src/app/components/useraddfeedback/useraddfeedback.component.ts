@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Feedback } from 'src/app/models/feedback.model';
+import { AuthService } from 'src/app/services/auth.service';
+import { FeedbackService } from 'src/app/services/feedback.service';
+declare var bootstrap: any; 
 
 
 @Component({
@@ -8,10 +12,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UseraddfeedbackComponent implements OnInit {
 
-  constructor() {}
+  feedback:Feedback = {
+    FeedbackId: 0,
+    UserId: 0,
+    FeedbackText: '',
+    Date: new Date()
+  }
 
-  ngOnInit(): void {}
+  userId:number;
+  constructor(private feedbackService:FeedbackService) {
+    this.userId = parseInt(localStorage.getItem('userId'));
+    this.feedback.UserId = this.userId;
+  }
 
-  
+  ngOnInit(): void {
+
+  }
+
+  addFeedback(): void {
+    console.log("UserId:", this.feedback);
+    if (this.feedback.FeedbackText) {
+        this.feedbackService.sendFeedback(this.feedback).subscribe(() => {
+            this.feedback.FeedbackText = '';
+            console.log("Feedback added successfully");
+            this.openModal();
+        });
+    }
 }
 
+openModal() {
+  var myModal = new bootstrap.Modal(document.getElementById('successModal'));
+  myModal.show();
+  // Reset the form state
+  const feedbackForm = document.querySelector('form');
+  if (feedbackForm) {
+      feedbackForm.reset();
+  } 
+}
+} 
