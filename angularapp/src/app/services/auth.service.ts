@@ -3,11 +3,17 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../models/login.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+<<<<<<< HEAD
   public apiUrl = "https://8080-adaaebcbceaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+=======
+
+  public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+>>>>>>> 715581abfb458af0472147e27387db8be61d6c9a
   
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
@@ -53,6 +59,7 @@ export class AuthService {
   }
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
+
   }
   logout(): void {
     localStorage.removeItem('token');

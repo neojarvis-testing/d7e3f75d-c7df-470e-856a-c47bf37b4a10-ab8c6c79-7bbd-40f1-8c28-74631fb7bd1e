@@ -8,7 +8,6 @@ namespace dotnetapp.Models
 {
     public class Room
     {
-
     [Key]
     public int RoomId { get; set; }
 

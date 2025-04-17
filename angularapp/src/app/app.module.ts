@@ -42,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     UsernavComponent,
     UserviewfeedbackComponent,
     UserviewmybookingComponent,
-    UserviewroomComponent
+    UserviewroomComponent,
   ],
   imports: [
     BrowserModule,

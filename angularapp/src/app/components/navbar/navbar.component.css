@@ -1,81 +1,35 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Custom CSS for the navigation bar */
+.navbar {
+  background-color: #000; /* Black background */
 }
 
-nav {
+.navbar-brand {
+  color: #00bfff !important; /* Light blue color for the brand name */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
-  width: 100%;
- 
-  display: flex;
- 
-  justify-content: space-between;
- 
-  align-items: center;
- 
-  background-color: black;
- 
-  padding: 10px 20px ;
- 
-  margin: 0;
- 
-  box-sizing: border-box;
- 
- }
- 
- 
- 
- .app-logo  {
- 
- 
-  color: white;
+.nav-link {
+  color: #f8f9fa !important; /* Light color for the links */
+  font-size: 1.1rem;
+}
 
- 
- }
- 
- 
- 
- .nav-links {
- 
-  list-style: none;
- 
-  display: flex;
- 
-  gap: 20px;
- 
-  margin: 0;
- 
-  padding: 0;
- 
- }
- 
- 
- 
- .nav-links li a {
- 
-  text-decoration: none;
- 
-  color: #f0f0f0;
- 
-  font-weight: 500;
- 
-  padding: 6px 10px;
- 
-  border-radius: 4px;
- 
-  transition: background-color 0.3s ease;
- 
- }
- 
- 
- 
- .nav-links li a:hover,
- 
- .nav-links li a.active {
- 
-  background-color:  gray;
- 
-  color: #fff;
- 
- }
+.nav-link:hover {
+  color: #00bfff !important; /* Light blue color on hover */
+}
+
+.navbar-toggler {
+  border-color: #00bfff; /* Light blue color for the toggler border */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 191, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
+.nav-link.active {
+   color: #00bfff !important; /* Light blue color for active link */
+  font-weight: bold;
+  border-bottom: 2px solid #00bfff; /* Light blue underline for active link */
+}
+  

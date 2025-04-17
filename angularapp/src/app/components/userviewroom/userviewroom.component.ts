@@ -68,7 +68,7 @@ export class UserviewroomComponent implements OnInit {
     }
   }
   isRoomBookedByUser(roomId: number): boolean {
-    return this.bookings.some(booking => booking.Room.RoomId === roomId);
+    return this.bookings.some(booking => booking.RoomId === roomId);
   }
 
   bookNow(roomId: number): void {
