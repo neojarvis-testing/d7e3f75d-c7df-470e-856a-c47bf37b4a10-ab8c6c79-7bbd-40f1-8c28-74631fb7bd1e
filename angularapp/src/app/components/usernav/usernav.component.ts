@@ -29,12 +29,6 @@ export class UsernavComponent implements OnInit {
     (event.target as HTMLSelectElement).value = 'Feedback';
 
   }
-
-  lout(): void {
-    this.service.logout();
-    this.router.navigate([`/login`]); 
-  }
- 
   lout(): void {
     this.service.logout();
     this.router.navigate([`/login`]);
