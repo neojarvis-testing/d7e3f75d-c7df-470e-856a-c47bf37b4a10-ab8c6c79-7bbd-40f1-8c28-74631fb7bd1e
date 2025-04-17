@@ -32,7 +32,6 @@ export class UserviewroomComponent implements OnInit {
    this.UserId = this.uid;
    //console.log(this.UserId);
    this.viewAll();
-   this.loadUserBookings();
   
   }
   viewAll():void{

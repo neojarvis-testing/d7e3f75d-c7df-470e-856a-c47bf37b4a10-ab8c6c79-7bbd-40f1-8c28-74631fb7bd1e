@@ -16,10 +16,7 @@ namespace dotnetapp.Data
         {
  
         }
- 
-
-
-        public DbSet<Booking> Bookings{get; set;}
+         public DbSet<Booking> Bookings{get; set;}
         public DbSet<Room> Rooms{get; set;}
         public DbSet<Feedback> Feedbacks{get; set;}
         public DbSet<User> Users{get; set;}
