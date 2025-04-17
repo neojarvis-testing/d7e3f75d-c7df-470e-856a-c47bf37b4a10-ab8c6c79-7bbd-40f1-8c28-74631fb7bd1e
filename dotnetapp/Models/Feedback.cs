@@ -15,7 +15,7 @@ namespace dotnetapp.Models
 
     public int? UserId { get; set; }
 
-    [JsonIgnore]
+ 
     public User? User { get; set; }
 
     [Required(ErrorMessage = "Feedback text is required")]

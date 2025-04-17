@@ -1,1 +1,39 @@
-<h1>Add Feedback</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h2 class="fw-bold mb-4" style="color: #08374d;">Add Feedback</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <form #feedbackForm="ngForm" (ngSubmit)="addFeedback()">
+              <div class="form-group mb-3">
+                <label for="feedback">Feedback<span class="text-danger">*</span></label>
+                <textarea id="feedback" name="feedback" [(ngModel)]="feedback.FeedbackText" #feedbackNg="ngModel" required class="form-control mt-2"></textarea>
+                <div class="text-danger mt-2" *ngIf="feedbackNg.invalid && (feedbackNg.dirty || feedbackNg.touched)">
+                  Feedback is required.
+                </div>
+              </div>
+              <button type="submit" [disabled]="feedbackForm.invalid" class="btn btn-primary btn-block">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          Successfully Added!
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
