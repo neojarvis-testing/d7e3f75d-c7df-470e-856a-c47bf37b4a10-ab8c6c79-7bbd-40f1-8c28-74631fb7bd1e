@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text.Json.Serialization;
+
 using System.ComponentModel.DataAnnotations;
 
 
@@ -15,7 +15,6 @@ namespace dotnetapp.Models
 
     public int? UserId { get; set; }
 
-    [JsonIgnore]
     public User? User { get; set; }
 
     [Required(ErrorMessage = "Feedback text is required")]
