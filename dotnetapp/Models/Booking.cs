@@ -16,13 +16,11 @@ namespace dotnetapp.Models
         [Required(ErrorMessage = "UserId is required")]
         public int UserId { get; set; }
 
-        [JsonIgnore]
         public User? User { get; set; }
 
         [Required(ErrorMessage = "RoomId is required")]
         public int RoomId { get; set; }
 
-        [JsonIgnore]
         public Room? Room { get; set; }
 
         [Required(ErrorMessage = "Check-in date is required")]

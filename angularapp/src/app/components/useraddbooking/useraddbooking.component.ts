@@ -79,6 +79,7 @@ export class UseraddbookingComponent implements OnInit {
     }
     if (this.isValidBookingForm()) {
       console.log("Addddd2");
+      console.log(this.booking.Room);
       this.roomService.addBooking(this.booking).subscribe({
         next: () => {
           console.log("Addddd3");

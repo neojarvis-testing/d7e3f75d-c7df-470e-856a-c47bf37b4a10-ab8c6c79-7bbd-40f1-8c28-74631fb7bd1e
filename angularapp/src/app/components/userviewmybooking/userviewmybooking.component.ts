@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
 import { Booking } from 'src/app/models/booking.model';
-import { AuthService } from 'src/app/services/auth.service';
 import { RoomService } from 'src/app/services/room.service';
-
-
 
 @Component({
   selector: 'app-userviewmybooking',
