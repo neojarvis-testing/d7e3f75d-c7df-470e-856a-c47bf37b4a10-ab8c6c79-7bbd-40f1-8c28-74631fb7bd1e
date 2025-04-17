@@ -1,12 +1,12 @@
 <div class="register-container">
     <h2>Registration</h2>
-    <form (ngSubmit)="handleRegister()" #registerForm="ngForm">
+    <form (ngSubmit)="register()" #registerForm="ngForm">
         <!-- Username field -->
         <label for="username">Username:</label>
         <input 
             type="text" 
             id="username" 
-            [(ngModel)]="username" 
+            [(ngModel)]="user.Username" 
             name="username" 
             placeholder="Enter your username" 
             required 
@@ -21,7 +21,7 @@
         <input 
             type="email" 
             id="email" 
-            [(ngModel)]="email" 
+            [(ngModel)]="user.Email" 
             name="email" 
             placeholder="Enter your email" 
             required 
@@ -36,7 +36,7 @@
         <input 
             type="password" 
             id="password" 
-            [(ngModel)]="password" 
+            [(ngModel)]="user.Password" 
             name="password" 
             placeholder="Enter your password" 
             required 
@@ -66,7 +66,7 @@
         <input 
             type="tel" 
             id="mobile" 
-            [(ngModel)]="mobile" 
+            [(ngModel)]="user.MobileNumber" 
             name="mobile" 
             placeholder="Enter your mobile number" 
             required 
@@ -80,7 +80,7 @@
         <label for="role">Role:</label>
         <select 
             id="role" 
-            [(ngModel)]="role" 
+            [(ngModel)]="user.UserRole" 
             name="role" 
             required
             #roleField="ngModel"
@@ -94,6 +94,6 @@
         </div>
 
         <!-- Submit button -->
-        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+        <button type="submit"  [disabled]="registerForm.invalid">Register</button>
     </form>
 </div>

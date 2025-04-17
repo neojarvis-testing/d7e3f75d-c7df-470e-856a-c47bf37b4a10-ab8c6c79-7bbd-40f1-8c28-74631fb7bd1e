@@ -1,1 +1,67 @@
-<h1>Booking Request Form</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card" style="background-color: #f8f9fa;">
+          <div class="card-body">
+            <button type="button" class="btn btn-primary float-end" (click)="backBooking()">Back</button>
+            <h3 class="text-center mb-4 mt-4 fw-bold" style="color: #08374d;">Booking Request Form</h3>
+            <form (ngSubmit)="addBooking(); bookingForm.form.markAllAsTouched();" #bookingForm="ngForm">
+              <div class="form-group mb-3">
+                <label for="checkInDate">Check-In Date<span class="text-danger">*</span></label>
+                <input type="date" id="checkInDate" [(ngModel)]="booking.CheckInDate" name="checkInDate" #checkInDateNg="ngModel" required class="form-control" (change)="validateDates()">
+                <div *ngIf="checkInDateNg.invalid && (checkInDateNg.touched || bookingForm.submitted)" class="text-danger">
+                  Check-In Date is required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="checkOutDate">Check-Out Date<span class="text-danger">*</span></label>
+                <input type="date" id="checkOutDate" [(ngModel)]="booking.CheckOutDate" name="checkOutDate" #checkOutDateNg="ngModel" required class="form-control" (change)="validateDates()">
+                <div *ngIf="checkOutDateNg.invalid && (checkOutDateNg.touched || bookingForm.submitted)" class="text-danger">
+                  Check-Out Date is required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="specialRequests">Special Requests<span class="text-danger">*</span></label>
+                <textarea id="specialRequests" [(ngModel)]="booking.SpecialRequests" name="specialRequests" #specialRequestsNg="ngModel" required class="form-control"></textarea>
+                <div *ngIf="specialRequestsNg.invalid && (specialRequestsNg.touched || bookingForm.submitted)" class="text-danger">
+                  Special Requests are required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="bookingPurpose">Booking Purpose<span class="text-danger">*</span></label>
+                <input type="text" id="bookingPurpose" [(ngModel)]="booking.BookingPurpose" name="bookingPurpose" #bookingPurposeNg="ngModel" required class="form-control">
+                <div *ngIf="bookingPurposeNg.invalid && (bookingPurposeNg.touched || bookingForm.submitted)" class="text-danger">
+                  Booking Purpose is required.
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label for="additionalComments">Additional Comments<span class="text-danger">*</span></label>
+                <textarea id="additionalComments" [(ngModel)]="booking.AdditionalComments" name="additionalComments" #additionalCommentsNg="ngModel" required class="form-control"></textarea>
+                <div *ngIf="additionalCommentsNg.invalid && (additionalCommentsNg.touched || bookingForm.submitted)" class="text-danger">
+                  Additional Comments are required.
+                </div>
+                <div *ngIf="errorMessage" class="error-message text-danger">
+                  {{ errorMessage }}
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Success Modal -->
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+      <div class="modal-content">
+        <div class="modal-body text-center">
+          Successfully Submitted
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" (click)="closeModal()">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

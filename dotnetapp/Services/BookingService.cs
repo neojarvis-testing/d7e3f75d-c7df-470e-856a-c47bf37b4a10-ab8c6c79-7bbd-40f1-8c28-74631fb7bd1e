@@ -20,7 +20,6 @@ namespace dotnetapp.Services
         public async Task<IEnumerable<Booking>> GetAllBookings()
         {
             return await _context.Bookings
-                .Include(b => b.User)
                 .Include(b => b.Room)
                 .ToListAsync();
         }
@@ -29,7 +28,6 @@ namespace dotnetapp.Services
         {
             return await _context.Bookings
                 .Where(b => b.UserId == userId)
-                .Include(b => b.User)
                 .Include(b => b.Room)
                 .ToListAsync();
         }

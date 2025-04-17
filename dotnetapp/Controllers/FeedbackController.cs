@@ -71,9 +71,9 @@ namespace dotnetapp.Controllers
                 var deleted = await _feedbackService.DeleteFeedback(feedbackId);
                 if (!deleted)
                 {
-                    return NotFound("Feedback not found");
+                    return NotFound(new {Message = "Feedback not found"});
                 }
-                return Ok(new{Message= "Feedback deleted successfully"});
+                return Ok(new {Message = "Feedback deleted successfully"});
             }
             catch (Exception ex)
             {
