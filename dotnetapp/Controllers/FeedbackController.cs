@@ -55,7 +55,7 @@ namespace dotnetapp.Controllers
             try
             {
                 await _feedbackService.AddFeedback(feedback);
-                return Ok("Feedback added successfully");
+                return Ok(new {Message = "Feedback added successfully"});
             }
             catch (Exception ex)
             {
@@ -71,9 +71,9 @@ namespace dotnetapp.Controllers
                 var deleted = await _feedbackService.DeleteFeedback(feedbackId);
                 if (!deleted)
                 {
-                    return NotFound("Feedback not found");
+                    return NotFound(new {Message = "Feedback not found"});
                 }
-                return Ok("Feedback deleted successfully");
+                return Ok(new {Message = "Feedback deleted successfully"});
             }
             catch (Exception ex)
             {

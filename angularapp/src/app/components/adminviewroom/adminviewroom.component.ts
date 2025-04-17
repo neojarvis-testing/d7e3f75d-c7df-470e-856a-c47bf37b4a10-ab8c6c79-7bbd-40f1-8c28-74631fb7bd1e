@@ -17,7 +17,7 @@ export class AdminviewroomComponent implements OnInit {
   roomToDelete: Room | null = null;
   paginatedRooms: Room[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6; // Number of items per page
+  itemsPerPage: number = 9; // Number of items per page
   totalPagesArray: number[] = [];
   totalPages: number = 1;
 
@@ -53,6 +53,7 @@ export class AdminviewroomComponent implements OnInit {
     this.totalPages = Math.ceil(this.filteredTerm.length / this.itemsPerPage);
     this.totalPagesArray = Array(this.totalPages).fill(0).map((x, i) => i + 1);
     this.paginateRooms();
+    console.log("Here");
   }
 
   paginateRooms(): void {
@@ -79,8 +80,11 @@ export class AdminviewroomComponent implements OnInit {
 
   deleteRoom(): void {
     if (this.roomToDelete) {
+      console.log(1);
       this.roomService.deleteRoom(this.roomToDelete.RoomId).subscribe(() => {
+        console.log(2);
         this.filteredTerm = this.filteredTerm.filter((item) => item.RoomId != this.roomToDelete.RoomId);
+        // this.filteredTerm = [...this.rooms]
         this.updatePagination();
       });
     }

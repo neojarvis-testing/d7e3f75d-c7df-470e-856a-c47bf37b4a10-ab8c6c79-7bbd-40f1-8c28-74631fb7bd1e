@@ -8,7 +8,8 @@ import { Booking } from '../models/booking.model';
   providedIn: 'root',
 })
 export class RoomService {
-  public apiUrl = 'https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
+
+  public apiUrl = 'https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io'; 
 
 
   constructor(private http: HttpClient) {}
@@ -51,6 +52,7 @@ export class RoomService {
 
 
   deleteRoom(roomId: number): Observable<void> {
+    
     return this.http.delete<void>(`${this.apiUrl}/api/Room/${roomId}`, {
       headers: this.getAuthHeaders(),
     });
@@ -71,7 +73,7 @@ export class RoomService {
   }
 
   addBooking(booking: Booking): Observable<Booking> {
-    return this.http.post<Booking>(`${this.apiUrl}/api/Booking`, booking, {
+    return this.http.post<Booking>(`${this.apiUrl}/api/Booking`,booking, {
       headers: this.getAuthHeaders(),
     });
   }
