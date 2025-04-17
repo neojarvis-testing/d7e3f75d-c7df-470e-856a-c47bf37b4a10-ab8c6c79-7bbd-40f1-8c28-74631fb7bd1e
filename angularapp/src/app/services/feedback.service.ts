@@ -8,7 +8,7 @@ providedIn: 'root'
 })
 export class FeedbackService {
   
-public apiUrl = "https://ide-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api";
+public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io/api";
 
 constructor(private http: HttpClient) {}
 
