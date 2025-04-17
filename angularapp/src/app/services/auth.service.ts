@@ -8,7 +8,8 @@ import { Login } from '../models/login.model';
   providedIn: 'root'
 })
 export class AuthService {
-  public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+
+  public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
   
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
@@ -54,6 +55,7 @@ export class AuthService {
   }
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
+
   }
   logout(): void {
     localStorage.removeItem('token');

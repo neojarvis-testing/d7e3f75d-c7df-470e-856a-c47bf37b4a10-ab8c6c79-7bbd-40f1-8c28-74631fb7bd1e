@@ -1,19 +1,18 @@
 import { Room } from "./room.model";
 import { User } from "./user.model";
 
-
-
 export interface Booking 
 {
+    BookingId?: number;
     Room?: Room;
     User?: User;
-    BookingId?: number;
+    Username: string;
     UserId: number;
     RoomId: number;
     CheckInDate: string;
     CheckOutDate: string;
     Status: string;
-    SpecialRequests?: string;
+    SpecialRequests: string;
     BookingPurpose: string;
     AdditionalComments?: string;
 }
