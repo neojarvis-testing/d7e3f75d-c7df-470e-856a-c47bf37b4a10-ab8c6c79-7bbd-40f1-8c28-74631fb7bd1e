@@ -27,13 +27,19 @@ export class UsernavComponent implements OnInit {
       this.router.navigate(['/userviewfeedback']);
     }
     (event.target as HTMLSelectElement).value = 'Feedback';
+
   }
 
   lout(): void {
     this.service.logout();
     this.router.navigate([`/login`]); 
   }
-
+ 
+  lout(): void {
+    this.service.logout();
+    this.router.navigate([`/login`]);
+  }
+ 
 }
 
 

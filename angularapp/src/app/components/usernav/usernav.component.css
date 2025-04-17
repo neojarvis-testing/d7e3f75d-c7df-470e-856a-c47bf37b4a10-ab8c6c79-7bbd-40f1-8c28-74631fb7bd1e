@@ -11,6 +11,7 @@
     color: #FFD700; /* Gold text color on hover */
     transition: color 0.3s ease; /* Smooth hover effect */
   }
+
   
   button:hover {
     color: #FF4500; /* Orange-red text color on hover */
@@ -32,12 +33,14 @@
     transition: all 0.3s ease;
     cursor: pointer;
   }
-  
+
+
   .logout-btn:hover {
     background-color: #da1212; /* Slightly darker shade */
     box-shadow: 0 5px 7px rgba(207, 29, 29, 0.15); /* Enhanced shadow */
     transform: scale(1.04); /* Slightly reduced scaling effect */
   }
+
   
   .nav-link.active {
     color: #00bfff !important; /* Light blue color for active link */

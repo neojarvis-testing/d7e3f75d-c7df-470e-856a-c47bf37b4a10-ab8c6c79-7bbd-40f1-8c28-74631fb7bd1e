@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background: linear-gradient(to right, #7ad8ea, #2bb5d9, #0083bc);">
+<nav class="navbar navbar-expand-lg navbar-light" style="background: black;">
     <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#" style="color: #1c82b1;">Hotel Booking Hub</a>
+        <a class="navbar-brand fw-bold" href="#" style="color: white;">Hotel Booking Hub</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,7 +8,7 @@
             <ul class="navbar-nav ms-auto align-items-center">
                 <li *ngIf="userRole === 'Admin'" class="nav-item navbar-user">
                     <div style="color: white;">
-                        {{userName}} / {{userRole}}
+                        Hello, {{userName}} / {{userRole}}
                     </div>
                 </li>
                 <li class="nav-item">
@@ -29,9 +29,9 @@
                 </li>
                 <li class="nav-item">
                     <!-- <a class="nav-link" style="color: white;" routerLink="/logout">Logout</a> -->
-                    <button style="color: red;" (click)="logout()">Logout</button>
+                    <button class="logout-btn" style="color: lightblue;" (click)="logout()">Logout</button>
                   </li>
-            </ul>
+            </ul>`
         </div>
     </div>
 </nav>
