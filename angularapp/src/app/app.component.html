@@ -1,7 +1,7 @@
 
 <app-navbar *ngIf="!isLoggedIn"></app-navbar>
 <app-adminnav *ngIf="isLoggedIn && userRole === 'Admin'"></app-adminnav>
-<app-usernav *ngIf="isLoggedIn && userRole === 'User'"></app-usernav>
+<app-usernav *ngIf="isLoggedIn && userRole === 'user'"></app-usernav> 
 <router-outlet></router-outlet>
  
- 
+<!-- changed into User to user -->

@@ -1,0 +1,47 @@
+.nav-item {
+    margin: 0 10px; /* Adds equal spacing between each navigation item */
+  }
+  
+  .nav-link:hover {
+    color: #00bfff !important; /* Light blue color on hover */
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
+  
+  .navbar-user:hover {
+    color: #FFD700; /* Gold text color on hover */
+    transition: color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  button:hover {
+    color: #FF4500; /* Orange-red text color on hover */
+    transition: color 0.3s ease; /* Smooth color transition for buttons */
+  }
+  
+  select:hover {
+    border-color: #00FF00; /* Green border on hover for the dropdown */
+  }
+  
+  .logout-btn {
+    background-color: lightblue; /* Light neutral color */
+    color: #333333; /* Dark text */
+    font-size: 14px; /* Reduced font size */
+    padding: 8px 16px; /* Smaller padding */
+    border: none;
+    border-radius: 8px; /* Slightly less rounded corners */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .logout-btn:hover {
+    background-color: #da1212; /* Slightly darker shade */
+    box-shadow: 0 5px 7px rgba(207, 29, 29, 0.15); /* Enhanced shadow */
+    transform: scale(1.04); /* Slightly reduced scaling effect */
+  }
+  
+  .nav-link.active {
+    color: #00bfff !important; /* Light blue color for active link */
+   font-weight: bold;
+   border-bottom: 2px solid #00bfff; /* Light blue underline for active link */
+ }
+   

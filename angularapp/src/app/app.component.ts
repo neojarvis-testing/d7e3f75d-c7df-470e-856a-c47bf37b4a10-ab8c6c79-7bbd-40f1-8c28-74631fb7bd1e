@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
       this.isLoggedIn = this.authService.isLoggedIn();
       this.authService.getCurrentUserRole().subscribe(role => {
         this.userRole = role;
+        console.log("Helooo" + this.userRole);
       });
     });
   }

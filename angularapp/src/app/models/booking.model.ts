@@ -2,7 +2,8 @@ import { Room } from "./room.model";
 import { User } from "./user.model";
 
 export interface Booking 
-{
+{    
+    Room: any;
     BookingId?: number;
     Room?: Room;
     User?: User;
