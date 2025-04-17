@@ -9,7 +9,7 @@ import { Login } from '../models/login.model';
 })
 export class AuthService {
 
-  public apiUrl = "https://8080-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+  public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
   
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
