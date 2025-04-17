@@ -3,8 +3,7 @@
   }
   
   .nav-link:hover {
-    color: #00FFFF; /* Cyan text color on hover */
-    text-decoration: underline; /* Underline effect on hover */
+    color: #00bfff !important; /* Light blue color on hover */
     transition: color 0.3s ease; /* Smooth color transition */
   }
   
@@ -40,4 +39,9 @@
     transform: scale(1.04); /* Slightly reduced scaling effect */
   }
   
-  
+  .nav-link.active {
+    color: #00bfff !important; /* Light blue color for active link */
+   font-weight: bold;
+   border-bottom: 2px solid #00bfff; /* Light blue underline for active link */
+ }
+   
