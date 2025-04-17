@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           Swal.close(); // Close the loading spinner
           // Delay for 3 seconds before redirecting
           setTimeout(() => {
-            this.router.navigate(['/adminviewroom']);
+            this.router.navigate(['/home']);
           }, 1000);
         },
         error => {
