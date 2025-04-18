@@ -11,8 +11,7 @@
             required
             #usernameField="ngModel"
         >
-        <!-- Error message for username -->
-        <div *ngIf="usernameField.touched && usernameField.invalid" class="error">
+        <div *ngIf="usernameField.touched && usernameField.dirty && usernameField.invalid" class="error">
             Username is required.
         </div>
 
@@ -26,8 +25,7 @@
             required
             #passwordField="ngModel"
         >
-        <!-- Error message for password -->
-        <div *ngIf="passwordField.touched && passwordField.invalid" class="error">
+        <div *ngIf="passwordField.touched && passwordField.dirty && passwordField.invalid" class="error">
             Password is required.
         </div>
 

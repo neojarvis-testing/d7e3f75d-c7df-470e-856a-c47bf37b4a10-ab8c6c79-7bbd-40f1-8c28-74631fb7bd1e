@@ -12,16 +12,7 @@ namespace dotnetapp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-<<<<<<< HEAD
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
-        {
- 
-        }
-         public DbSet<Booking> Bookings{get; set;}
-        public DbSet<Room> Rooms{get; set;}
-        public DbSet<Feedback> Feedbacks{get; set;}
-        public DbSet<User> Users{get; set;}
-=======
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options){}
         public DbSet<Room> Rooms{get;set;}
@@ -44,6 +35,6 @@ namespace dotnetapp.Data
         //     .HasForeignKey(b => b.UserId);
         }
       
->>>>>>> 715581abfb458af0472147e27387db8be61d6c9a
+
     }
 }

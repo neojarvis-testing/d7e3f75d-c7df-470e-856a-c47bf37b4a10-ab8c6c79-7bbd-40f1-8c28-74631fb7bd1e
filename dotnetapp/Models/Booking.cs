@@ -16,11 +16,8 @@ namespace dotnetapp.Models
         [Required(ErrorMessage = "UserId is required")]
         public int? UserId { get; set; }
 
-<<<<<<< HEAD
-        public User? User { get; set; }
-=======
         public User? User{get; set;}
->>>>>>> 715581abfb458af0472147e27387db8be61d6c9a
+
 
         [Required(ErrorMessage = "RoomId is required")]
         public int? RoomId { get; set; }
