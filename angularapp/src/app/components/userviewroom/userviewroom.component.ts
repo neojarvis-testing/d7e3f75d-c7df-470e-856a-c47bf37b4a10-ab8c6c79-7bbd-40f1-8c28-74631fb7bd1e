@@ -19,8 +19,8 @@ export class UserviewroomComponent implements OnInit {
   paginatedRooms: Room[] = [];
   totalPagesArray: number[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6;
-  uid: number;
+  itemsPerPage: number = 9;
+  uid:number;
 
   constructor(
     private roomService: RoomService,

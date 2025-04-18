@@ -12,7 +12,7 @@
             required 
             #usernameField="ngModel"
         >
-        <div class="error-message" *ngIf="usernameField.invalid && usernameField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && usernameField.invalid) || (usernameField.invalid && (usernameField.dirty || usernameField.touched))">
             Username is required.
         </div>
 
@@ -27,7 +27,7 @@
             required 
             #emailField="ngModel"
         >
-        <div class="error-message" *ngIf="emailField.invalid && emailField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && emailField.invalid) || (emailField.invalid && (emailField.dirty || emailField.touched))">
             A valid email is required.
         </div>
 
@@ -42,7 +42,7 @@
             required 
             #passwordField="ngModel"
         >
-        <div class="error-message" *ngIf="passwordField.invalid && passwordField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && passwordField.invalid) || (passwordField.invalid && (passwordField.dirty || passwordField.touched))">
             Password is required.
         </div>
 
@@ -57,9 +57,15 @@
             required 
             #confirmPasswordField="ngModel"
         >
-        <div class="error-message" *ngIf="confirmPasswordField.invalid && confirmPasswordField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && confirmPasswordField.invalid) || (confirmPasswordField.invalid && (confirmPasswordField.dirty || confirmPasswordField.touched))">
             Confirm Password is required.
         </div>
+    
+    <div class="error-message" *ngIf="user.Password!=confirmPassword && (confirmPasswordField.dirty || confirmPasswordField.touched)"> 
+ 
+     Passwords do not match 
+ 
+    </div>
 
         <!-- Mobile number field -->
         <label for="mobile">Mobile Number:</label>
@@ -72,7 +78,7 @@
             required 
             #mobileField="ngModel"
         >
-        <div class="error-message" *ngIf="mobileField.invalid && mobileField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && mobileField.invalid) || (mobileField.invalid && (mobileField.dirty || mobileField.touched))">
             Mobile Number is required.
         </div>
 
@@ -89,11 +95,17 @@
             <option value="User">User</option>
             <option value="Admin">Admin</option>
         </select>
-        <div class="error-message" *ngIf="roleField.invalid && roleField.touched">
+        <div class="error-message" *ngIf="(registerForm.submitted && roleField.invalid) || (roleField.invalid && (roleField.dirty || roleField.touched))">
             Role selection is required.
         </div>
-
+        <div class="form-group" *ngIf="user.UserRole === 'Admin'">
+            <label for="secretKey">Secret Key<span class="text-danger">*</span></label>
+            <input type="password" id="secretKey" name="secretKey" [(ngModel)]="enteredkey" required #secretKeyNg="ngModel" class="form-control">
+            <div *ngIf="(registerForm.submitted && secretKeyNg.invalid) || (secretKeyNg.invalid && (secretKeyNg.dirty || secretKeyNg.touched))" class="text-danger">
+              Secret Key is required
+            </div>
+            </div>
         <!-- Submit button -->
-        <button type="submit"  [disabled]="registerForm.invalid">Register</button>
+        <button type="submit"  >Register</button>
     </form>
 </div>

@@ -10,7 +10,7 @@ import { Login } from '../models/login.model';
 export class AuthService {
 
   public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
-  
+
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
   // currentUserId: number;
@@ -61,6 +61,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('userId');
+    localStorage.removeItem('name');
     this.currentUserRole.next(null);
   }
   getUserRole(): string | null {

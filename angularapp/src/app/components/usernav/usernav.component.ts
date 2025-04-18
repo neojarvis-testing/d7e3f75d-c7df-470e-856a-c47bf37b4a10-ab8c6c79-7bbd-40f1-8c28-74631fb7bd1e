@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-usernav',
   templateUrl: './usernav.component.html',
@@ -12,12 +12,12 @@ export class UsernavComponent implements OnInit {
   userRole: string = '';
 
   constructor(public router: Router, public service: AuthService) {
-    this.userName = localStorage.getItem('name') || 'Guest'; 
+    this.userName = localStorage.getItem('name') || 'Guest';
     this.userRole = localStorage.getItem('role') || 'User';
-   }
+  }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onFeedbackChange(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
@@ -29,11 +29,22 @@ export class UsernavComponent implements OnInit {
     (event.target as HTMLSelectElement).value = 'Feedback';
 
   }
+
   lout(): void {
-    this.service.logout();
-    this.router.navigate([`/login`]);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you really want, logout?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, logout!',
+      cancelButtonText: 'No, stay logged in'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.service.logout();
+        this.router.navigate(['/login']);
+      }
+    });
   }
- 
 }
 
 
