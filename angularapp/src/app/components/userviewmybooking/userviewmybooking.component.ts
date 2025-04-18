@@ -16,7 +16,7 @@ export class UserviewmybookingComponent implements OnInit {
   filteredBookings: Booking[] = [];
   searchQuery: string = '';
   bookingToDelete: Booking | null = null;
-  uid:number;
+  uid: number;
 
   constructor(private roomService: RoomService) { }
 
@@ -49,7 +49,8 @@ export class UserviewmybookingComponent implements OnInit {
   searchBookings(): void {
     if (this.searchQuery) {
       this.filteredBookings = this.bookings.filter(booking =>
-     booking.Room && booking.Room.HotelName.toLowerCase().includes(this.searchQuery.toLowerCase()));
+        booking.Room && booking.Room.HotelName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     } else {
       this.filteredBookings = [...this.bookings];
     }

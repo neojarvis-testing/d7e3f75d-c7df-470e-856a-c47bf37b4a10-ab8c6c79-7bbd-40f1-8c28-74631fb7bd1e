@@ -86,7 +86,7 @@ export class HomeComponent implements AfterViewInit {
   
     {
   
-     text: "Our honeymoon was perfect thanks to the incredible properties we found through this platform.",
+     text: "Our stay was perfect thanks to the incredible properties we found through this platform.",
   
      name: "Emma & David",
   
