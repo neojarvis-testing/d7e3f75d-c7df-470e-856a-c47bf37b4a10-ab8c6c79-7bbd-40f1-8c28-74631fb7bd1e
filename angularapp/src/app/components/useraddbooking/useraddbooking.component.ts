@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Booking } from 'src/app/models/booking.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RoomService } from 'src/app/services/room.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 declare var bootstrap: any;
 
@@ -30,8 +29,10 @@ export class UseraddbookingComponent implements OnInit {
   errorMessage: string = '';
   uid:number;
   uname:string;
+  minDate: string;
+
   
-  constructor(private roomService: RoomService, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
+  constructor(private roomService: RoomService, private router: Router, private route: ActivatedRoute) {
     this.uid = parseInt(localStorage.getItem('userId'));
     this.booking.UserId = this.uid;
     this.uname = localStorage.getItem('name');
@@ -42,6 +43,10 @@ export class UseraddbookingComponent implements OnInit {
     })
     console.log("UserId: "+ this.booking.UserId)
     console.log("Room Id: "+ this.booking.RoomId)
+    
+    const today = new Date();
+    this.minDate = today.toISOString().split('T')[0];
+
   }
 
   ngOnInit(): void {}
