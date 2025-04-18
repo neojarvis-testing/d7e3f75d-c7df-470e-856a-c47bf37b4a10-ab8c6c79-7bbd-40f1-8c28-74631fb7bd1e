@@ -20,7 +20,8 @@
         
         <div class="card-container">
           <div *ngFor="let room of paginatedRooms; let i = index" class="card">
-            <img src= "/assets/images/philip-jahn-PYkpulrIMG0-unsplash.jpg" alt="A stunning accommodation">
+            <!-- <img src= "/assets/images/philip-jahn-PYkpulrIMG0-unsplash.jpg" alt="A stunning accommodation"> -->
+            <img [src]="room.ImageUrl" alt="A stunning accommodation">
 
             <!-- <img [src]="" alt="Room Image" /> -->
             <div class="card-header">
