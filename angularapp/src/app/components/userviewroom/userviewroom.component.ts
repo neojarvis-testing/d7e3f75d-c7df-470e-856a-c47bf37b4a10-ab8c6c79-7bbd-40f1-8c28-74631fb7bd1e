@@ -5,7 +5,6 @@ import { Booking } from 'src/app/models/booking.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-userviewroom',
   templateUrl: './userviewroom.component.html',
@@ -13,37 +12,38 @@ import { Router } from '@angular/router';
 })
 export class UserviewroomComponent implements OnInit {
   rooms: Room[] = [];
-  filteredTerm: Room[]=[];
-  searchTerm: string='';
-  UserId:number | null = null;
-  bookings: Booking[]=[];
+  filteredTerm: Room[] = [];
+  searchTerm: string = '';
+  UserId: number | null = null;
+  bookings: Booking[] = [];
   paginatedRooms: Room[] = [];
   totalPagesArray: number[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 9;
   uid:number;
- 
 
-  constructor(private roomService:RoomService,private authService:AuthService,
-    private router:Router) { }
+  constructor(
+    private roomService: RoomService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-   this.uid = parseInt(localStorage.getItem('userId'));
-   this.UserId = this.uid;
-   //console.log(this.UserId);
-   this.viewAll();
-  
+    this.uid = parseInt(localStorage.getItem('userId'));
+    this.UserId = this.uid;
+    this.viewAll();
+    this.loadUserBookings();
   }
-  viewAll():void{
-    this.roomService.getAllRooms().subscribe(data=>
-      {
-        // console.log(data);
-        this.rooms = data;
-        this.filteredTerm = [...this.rooms];
-        this.paginateRooms();
-        this.setupPagination();
-      })
+
+  viewAll(): void {
+    this.roomService.getAllRooms().subscribe((data) => {
+      this.rooms = data;
+      this.filteredTerm = [...this.rooms];
+      this.paginateRooms();
+      this.setupPagination();
+    });
   }
+
   searchByHotelNameRoomTypeLocation(): void {
     if (this.searchTerm) {
       this.filteredTerm = this.rooms.filter((room) => {
@@ -52,14 +52,15 @@ export class UserviewroomComponent implements OnInit {
         const locationMatch = room.Location.toLowerCase().includes(this.searchTerm.toLowerCase());
         return hotelNameMatch || roomTypeMatch || locationMatch;
       });
-      console.log('Filtered rooms:', this.filteredTerm); // Log filtered rooms data
+      console.log('Filtered rooms:', this.filteredTerm);
     } else {
       this.filteredTerm = [...this.rooms];
-      console.log('Reset filtered rooms:', this.filteredTerm); // Log reset filtered rooms data
+      console.log('Reset filtered rooms:', this.filteredTerm);
     }
     this.paginateRooms();
     this.setupPagination();
   }
+
   loadUserBookings(): void {
     if (this.UserId) {
       this.roomService.getBookingsByUserId(this.UserId).subscribe((res) => {
@@ -67,8 +68,9 @@ export class UserviewroomComponent implements OnInit {
       });
     }
   }
+
   isRoomBookedByUser(roomId: number): boolean {
-    return this.bookings.some(booking => booking.RoomId === roomId);
+    return this.bookings.some((booking) => booking.RoomId === roomId);
   }
 
   bookNow(roomId: number): void {
@@ -90,9 +92,4 @@ export class UserviewroomComponent implements OnInit {
     this.currentPage = page;
     this.paginateRooms();
   }
-
-
-
-
-  
 }
