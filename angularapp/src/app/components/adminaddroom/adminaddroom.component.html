@@ -14,9 +14,16 @@
 
             <div class="form-group mb-3">
               <label for="roomType">Room Type<span class="text-danger">*</span></label>
-              <input type="text" id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter room type">
+              <select id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <option value="" disabled selected>Select room type</option>
+                <option value="Suite">Suite</option>
+                <option value="Premium">Premium</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Executive">Executive</option>
+              </select>
               <div *ngIf="roomTypeNg.invalid && (roomTypeNg.dirty || roomTypeNg.touched)" class="text-danger">Room Type is required.</div>
             </div>
+            
 
             <div class="form-group mb-3">
               <label for="noOfRooms">Number of Rooms<span class="text-danger">*</span></label>
@@ -38,9 +45,15 @@
 
             <div class="form-group mb-3">
               <label for="bedType">Bed Type<span class="text-danger">*</span></label>
-              <input type="text" id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter bed type">
+              <select id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <option value="" disabled selected>Select bed type</option>
+                <option value="Single">Single</option>
+                <option value="Deluxe">Double</option>
+                <option value="Triple">Triple</option>
+              </select>
               <div *ngIf="bedTypeNg.invalid && (bedTypeNg.dirty || bedTypeNg.touched)" class="text-danger">Bed Type is required.</div>
             </div>
+            
 
             <div class="form-group mb-3">
               <label for="isAvailable">Is Available<span class="text-danger">*</span></label>
