@@ -10,7 +10,6 @@ declare var bootstrap: any;
   styleUrls: ['./userviewfeedback.component.css']
 })
 export class UserviewfeedbackComponent implements OnInit {
-
   userId: number = 0;
   uid: number =0;
   feedbacks: Feedback[] = [];
@@ -23,8 +22,7 @@ export class UserviewfeedbackComponent implements OnInit {
   console.log("Here: ", this.userId);
   }
 
-  ngOnInit(): void 
-  {
+  ngOnInit(): void {
     this.loadUserFeedback();
   }
 
@@ -34,17 +32,17 @@ export class UserviewfeedbackComponent implements OnInit {
     })
   }
 
-confirmDelete(feedback: Feedback): void {
+  confirmDelete(feedback: Feedback): void {
   this.feedbackToDelete = feedback;
   var deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
   deleteModal.show();
-}
+  }
 
   deleteFeedback(): void {
     if (this.feedbackToDelete) {
-      this.feedbackService.deleteFeedback(this.feedbackToDelete.FeedbackId).subscribe(() => {
-        this.feedbacks = this.feedbacks.filter((item) => item.FeedbackId != this.feedbackToDelete.FeedbackId);
-      })
-    }
+    this.feedbackService.deleteFeedback(this.feedbackToDelete.FeedbackId).subscribe(() => {
+      this.feedbacks = this.feedbacks.filter((item) => item.FeedbackId != this.feedbackToDelete.FeedbackId);
+    });
+   }
   }
 }
