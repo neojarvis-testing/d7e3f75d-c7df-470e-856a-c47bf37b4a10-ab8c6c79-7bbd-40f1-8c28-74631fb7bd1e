@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Room } from 'src/app/models/room.model';
 import { RoomService } from 'src/app/services/room.service';
 declare var bootstrap: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-adminviewroom',
@@ -17,7 +18,7 @@ export class AdminviewroomComponent implements OnInit {
   roomToDelete: Room | null = null;
   paginatedRooms: Room[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 9; // Number of items per page
+  itemsPerPage: number = 6; // Number of items per page
   totalPagesArray: number[] = [];
   totalPages: number = 1;
 
@@ -28,11 +29,42 @@ export class AdminviewroomComponent implements OnInit {
   }
 
   viewRoom(): void {
+    Swal.fire({
+      title: 'Loading Rooms...',
+      text: 'Please wait while we load your Rooms.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+    
     this.roomService.getAllRooms().subscribe((data) => {
       this.rooms = data;
       this.filteredTerm = [...this.rooms];
       this.updatePagination();
-    });
+      Swal.close();
+
+      if (this.rooms.length === 0) {
+        Swal.fire({
+          icon: 'info',
+          title: 'No Data',
+          text: 'No Rooms available.'
+        });
+        
+      }
+    },
+    (error) => {
+      console.error('Error loading Rooms', error);
+      // Optionally, you can log the error or handle it silently
+      Swal.close(); // Close the loading spinner even if there's an error
+      Swal.fire({
+        icon: 'info',
+        title: 'No Data',
+        text: 'No Rooms available.'
+      });
+    }
+  );
+   
   }
 
   searchByHotelName(): void {

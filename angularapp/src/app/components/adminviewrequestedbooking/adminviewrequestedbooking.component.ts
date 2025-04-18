@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/models/booking.model';
 import { Room } from 'src/app/models/room.model';
 import { RoomService } from 'src/app/services/room.service';
+declare var bootstrap: any;
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-adminviewrequestedbooking',
@@ -21,11 +23,41 @@ export class AdminviewrequestedbookingComponent implements OnInit {
 
   loadbookings()
   {
+    Swal.fire({
+      title: 'Loading Bookings...',
+      text: 'Please wait while we load your bookings.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+   
      this.service.getAllBookings().subscribe((res)=>{
       console.log("user data", res);
       this.bookings = res;
-      this.filteredBooking = res;
-     });
+      this.filteredBooking = res; 
+      Swal.close();
+
+      if (this.bookings.length === 0) {
+        Swal.fire({
+          icon: 'info',
+          title: 'No Data',
+          text: 'No bookings available.'
+        });
+      }
+    },
+    (error) => {
+      console.error('Error loading bookings', error);
+      // Optionally, you can log the error or handle it silently
+      Swal.close(); // Close the loading spinner even if there's an error
+      Swal.fire({
+        icon: 'info',
+        title: 'No Data',
+        text: 'No bookings available.'
+      });
+    }
+  );
+
   }
 
   searchbyHotelName(): void {

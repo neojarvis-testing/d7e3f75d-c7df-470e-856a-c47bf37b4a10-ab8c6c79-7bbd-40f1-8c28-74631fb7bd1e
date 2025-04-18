@@ -13,6 +13,7 @@ namespace dotnetapp.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options){}
         public DbSet<Room> Rooms{get;set;}
         public DbSet<Booking> Bookings{get;set;}
@@ -34,5 +35,6 @@ namespace dotnetapp.Data
         //     .HasForeignKey(b => b.UserId);
         }
       
+
     }
 }

@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Room } from '../models/room.model';
 import { Booking } from '../models/booking.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RoomService {
 
-  public apiUrl = "https://8080-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+  public apiUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) {}
 

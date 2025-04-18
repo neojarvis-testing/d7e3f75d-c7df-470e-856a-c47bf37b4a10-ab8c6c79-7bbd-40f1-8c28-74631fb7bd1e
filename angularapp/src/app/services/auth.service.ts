@@ -2,27 +2,25 @@ import { Injectable, Optional } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Login } from '../models/login.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
 
-  public apiUrl = "https://8080-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+export class AuthService {
+  
+  public apiUrl = environment.baseUrl;
 
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
-  // currentUserId: number;
   private authStateChanged = new Subject<void>();
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
       this.currentUserRole.next(this.getUserRoleFromToken(token));
-      // this.currentUserId.next(parseInt(this.getUserIdFromToken(token)));
-      // console.log("Auth Service: "+ this.currentUserId);
     }
-    // this.loadInitialUserData();
   }
   login(credentials: Login): Observable<any> {
     return new Observable(observer => {
@@ -123,14 +121,6 @@ export class AuthService {
     console.log("Auth Seer: "+ this.currentUserId);
     return this.currentUserId.asObservable();
   }
-  // private loadInitialUserData() {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     const decodedToken = this.decodeToken(token);
-  //     this.currentUserRole.next(decodedToken.role || null);
-  //     this.currentUserId.next(decodedToken.sub ? parseInt(decodedToken.sub, 10) : null);
-  //   }
-  // }
   private decodeToken(token: string): any {
     const payload = token.split('.')[1];
     return JSON.parse(atob(payload));

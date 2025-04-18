@@ -18,6 +18,7 @@ namespace dotnetapp.Models
 
         public User? User{get; set;}
 
+
         [Required(ErrorMessage = "RoomId is required")]
         public int? RoomId { get; set; }
 
