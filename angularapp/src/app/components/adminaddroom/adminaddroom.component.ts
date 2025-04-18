@@ -16,7 +16,7 @@ export class AdminaddroomComponent implements OnInit {
   room: Room = {
     HotelName: '',
     RoomType: '',
-    NoOfRooms: 0,
+    NoOfRooms: 1,
     PricePerNight: 0,
     Location: '',
     BedType: '',

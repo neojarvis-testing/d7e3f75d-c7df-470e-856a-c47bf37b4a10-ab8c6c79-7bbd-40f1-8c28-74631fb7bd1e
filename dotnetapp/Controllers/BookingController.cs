@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using dotnetapp.Models;
 using dotnetapp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 namespace dotnetapp.Controllers
 {
@@ -19,6 +22,7 @@ namespace dotnetapp.Controllers
             _bookingService = bookingService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetAllBookings()
         {
@@ -26,6 +30,7 @@ namespace dotnetapp.Controllers
             return Ok(bookings);
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet("user/{userId}")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUserId(int userId)
         {
@@ -37,6 +42,7 @@ namespace dotnetapp.Controllers
             return Ok(bookings);
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost]
         public async Task<ActionResult> AddBooking([FromBody] Booking booking)
         {
@@ -58,6 +64,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "User")]
         [HttpPut("{bookingId}")]
         public async Task<ActionResult> UpdateBooking(int bookingId, [FromBody] Booking booking)
         {
@@ -79,6 +86,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "User")]
         [HttpDelete("{bookingId}")]
         public async Task<ActionResult> DeleteBooking(int bookingId)
         {

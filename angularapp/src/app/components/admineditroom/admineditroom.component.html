@@ -10,37 +10,37 @@
             <form (ngSubmit)="EditRoom()" #roomForm="ngForm" novalidate>
               <div class="form-group mb-3">
                 <label for="hotelName">Hotel Name<span class="text-danger">*</span></label>
-                <input type="text" id="hotelName" [(ngModel)]="room.HotelName" name="hotelName" required #hotelNameNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="text" id="hotelName" [(ngModel)]="room.HotelName" name="hotelName" required #hotelNameNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="hotelNameNg.invalid && (hotelNameNg.dirty || hotelNameNg.touched)" class="text-danger">Hotel Name is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="roomType">Room Type<span class="text-danger">*</span></label>
-                <input type="text" id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="text" id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="roomTypeNg.invalid && (roomTypeNg.dirty || roomTypeNg.touched)" class="text-danger">Room Type is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="noOfRooms">Number of Rooms<span class="text-danger">*</span></label>
-                <input type="number" id="noOfRooms" [(ngModel)]="room.NoOfRooms" name="noOfRooms" required #noOfRoomsNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="number" id="noOfRooms" [(ngModel)]="room.NoOfRooms" name="noOfRooms" required #noOfRoomsNg="ngModel" min="1" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="noOfRoomsNg.invalid && (noOfRoomsNg.dirty || noOfRoomsNg.touched)" class="text-danger">Number of Rooms is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="pricePerNight">Price Per Night<span class="text-danger">*</span></label>
-                <input type="number" id="pricePerNight" [(ngModel)]="room.PricePerNight" name="pricePerNight" required #pricePerNightNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="number" id="pricePerNight" [(ngModel)]="room.PricePerNight" name="pricePerNight" required #pricePerNightNg="ngModel" min="1" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="pricePerNightNg.invalid && (pricePerNightNg.dirty || pricePerNightNg.touched)" class="text-danger">Price Per Night is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="location">Location<span class="text-danger">*</span></label>
-                <input type="text" id="location" [(ngModel)]="room.Location" name="location" required #locationNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="text" id="location" [(ngModel)]="room.Location" name="location" required #locationNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="locationNg.invalid && (locationNg.dirty || locationNg.touched)" class="text-danger">Location is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="bedType">Bed Type<span class="text-danger">*</span></label>
-                <input type="text" id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
+                <input type="text" id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
                 <div *ngIf="bedTypeNg.invalid && (bedTypeNg.dirty || bedTypeNg.touched)" class="text-danger">Bed Type is required.</div>
               </div>
   
@@ -54,13 +54,13 @@
   
               <div class="form-group mb-3">
                 <label for="description">Description<span class="text-danger">*</span></label>
-                <textarea id="description" [(ngModel)]="room.Description" name="description" required #descriptionNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;"></textarea>
+                <textarea id="description" [(ngModel)]="room.Description" name="description" required #descriptionNg="ngModel" minlength="2" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;"></textarea>
                 <div *ngIf="descriptionNg.invalid && (descriptionNg.dirty || descriptionNg.touched)" class="text-danger">Description is required.</div>
               </div>
   
               <div class="form-group mb-3">
                 <label for="facilities">Facilities<span class="text-danger">*</span></label>
-                <textarea id="facilities" [(ngModel)]="room.Facilities" name="facilities" required #facilitiesNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;"></textarea>
+                <textarea id="facilities" [(ngModel)]="room.Facilities" name="facilities" required #facilitiesNg="ngModel" minlength="2" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;"></textarea>
                 <div *ngIf="facilitiesNg.invalid && (facilitiesNg.dirty || facilitiesNg.touched)" class="text-danger">Facilities are required.</div>
               </div>
   
