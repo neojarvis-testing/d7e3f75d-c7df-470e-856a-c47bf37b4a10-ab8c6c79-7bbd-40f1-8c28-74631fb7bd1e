@@ -153,6 +153,8 @@
         placeholder="Enter your password"
    
         required
+
+        pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}"
    
         #passwordField="ngModel"
    
@@ -160,14 +162,13 @@
    
        >
    
-       <div class="error-message" *ngIf="(registerForm.submitted && passwordField.invalid) || (passwordField.invalid && (passwordField.dirty || passwordField.touched))">
-   
-        Password is required.
-   
-       </div>
-   
+       <div *ngIf="(registerForm.submitted && passwordField.invalid) || (passwordField.invalid && (passwordField.dirty || passwordField.touched))">
+        <div class="error-message" *ngIf="passwordField.errors?.required">
+        Password is required
+        </div> 
+       <div class="error-message" *ngIf="passwordField.errors?.pattern">Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character</div>
       </div>
-   
+   </div>
       
    
       <!-- Confirm password field -->
@@ -231,6 +232,8 @@
         placeholder="Enter your mobile number"
    
         required
+
+        pattern="^[6-9]\d{9}$"
    
         #mobileField="ngModel"
    
@@ -239,9 +242,12 @@
        >
    
        <div class="error-message" *ngIf="(registerForm.submitted && mobileField.invalid) || (mobileField.invalid && (mobileField.dirty || mobileField.touched))">
-   
+        <div *ngIf="mobileField.errors?.required">
         Mobile Number is required.
-   
+        </div>
+        <div *ngIf="mobileField.errors?.pattern">
+        Invalid mobile number
+        </div>
        </div>
    
       </div>
