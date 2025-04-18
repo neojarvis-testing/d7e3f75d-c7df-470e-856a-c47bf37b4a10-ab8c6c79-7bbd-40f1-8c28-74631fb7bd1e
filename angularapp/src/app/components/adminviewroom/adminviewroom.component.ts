@@ -113,14 +113,27 @@ export class AdminviewroomComponent implements OnInit {
   deleteRoom(): void {
     if (this.roomToDelete) {
       console.log(1);
-      this.roomService.deleteRoom(this.roomToDelete.RoomId).subscribe(() => {
-        console.log(2);
-        this.filteredTerm = this.filteredTerm.filter((item) => item.RoomId != this.roomToDelete.RoomId);
-        // this.filteredTerm = [...this.rooms]
-        this.updatePagination();
-      });
+      this.roomService.deleteRoom(this.roomToDelete.RoomId).subscribe(
+        () => {
+          console.log(2);
+          this.filteredTerm = this.filteredTerm.filter((item) => item.RoomId != this.roomToDelete.RoomId);
+          this.updatePagination();
+        },
+        (error) => {
+          if (error.status === 500) {
+            console.error('Server error occurred.');
+            Swal.fire({
+              icon: 'error',
+              title: 'Can Not Delete',
+              text: 'Room has been booked.'
+            });
+            // You can add additional logic here, such as displaying an error message to the user
+          }
+        }
+      );
     }
   }
+  
 }
 
 
