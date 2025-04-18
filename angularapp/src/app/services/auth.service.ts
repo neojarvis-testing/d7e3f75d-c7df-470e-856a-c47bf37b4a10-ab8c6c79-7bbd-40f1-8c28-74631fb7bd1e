@@ -7,9 +7,9 @@ import { Login } from '../models/login.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
-  public apiUrl = "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
 
   private currentUserRole = new BehaviorSubject<string | null>(null);
   private currentUserId = new BehaviorSubject<number | null>(null);
