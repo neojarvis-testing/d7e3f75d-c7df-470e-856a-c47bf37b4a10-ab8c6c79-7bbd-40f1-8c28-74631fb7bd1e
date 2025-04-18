@@ -21,13 +21,15 @@ export class AdminviewrequestedbookingComponent implements OnInit {
 
   loadbookings()
   {
+   
      this.service.getAllBookings().subscribe((res)=>{
       console.log("user data", res);
       this.bookings = res;
-      this.filteredBooking = res;
+      this.filteredBooking = res;    
+      
      });
   }
-
+  
   searchbyHotelName(): void {
     if (this.searchTerm) {
       this.filteredBooking = this.bookings.filter((item) => {
