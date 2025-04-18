@@ -11,8 +11,6 @@ import { environment } from 'src/environments/environment';
 
 export class AuthService {
   
-  public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
-
   public apiUrl = environment.baseUrl;
 
   private currentUserRole = new BehaviorSubject<string | null>(null);
