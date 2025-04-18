@@ -12,7 +12,7 @@
  
     <div class="hero-cta">
  
-     <button class="explore-button">EXPLORE DESTINATIONS</button>
+     <button class="explore-button" (click)="navigation()">EXPLORE DESTINATIONS</button>
  
     </div>
  
@@ -156,9 +156,9 @@
 
    <form class="newsletter-form">
 
-    <input type="email" placeholder="Your email address" class="newsletter-input">
-
-    <button type="submit" class="newsletter-button">SUBSCRIBE</button>
+    <input type="email" placeholder="Your email address" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="newsletter-input">
+    
+    <button type="submit" (click)="subscribe()" class="newsletter-button">SUBSCRIBE</button>
 
    </form>
 
