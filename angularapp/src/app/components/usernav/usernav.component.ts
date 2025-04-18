@@ -30,7 +30,6 @@ export class UsernavComponent implements OnInit {
 
   }
 
-
   lout(): void {
     Swal.fire({
       title: 'Are you sure?',
