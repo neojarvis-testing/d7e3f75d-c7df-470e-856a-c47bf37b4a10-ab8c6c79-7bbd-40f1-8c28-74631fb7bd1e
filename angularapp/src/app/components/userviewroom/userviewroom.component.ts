@@ -20,7 +20,7 @@ export class UserviewroomComponent implements OnInit {
   paginatedRooms: Room[] = [];
   totalPagesArray: number[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 9;
   uid:number;
  
 

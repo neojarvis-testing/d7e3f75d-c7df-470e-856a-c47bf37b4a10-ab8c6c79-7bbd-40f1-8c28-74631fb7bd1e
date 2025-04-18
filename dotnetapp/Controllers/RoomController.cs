@@ -24,7 +24,6 @@ namespace dotnetapp.Controllers
         }
 
 
-        // [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -58,7 +57,7 @@ namespace dotnetapp.Controllers
         }
 
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> AddRoom([FromBody] Room room)
         {
@@ -85,6 +84,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut("{roomId}")]
         public async Task<ActionResult> UpdateRoom(int roomId, [FromBody] Room room)
         {
@@ -110,6 +110,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{roomId}")]
         public async Task<ActionResult> DeleteRoom(int roomId)
         {
