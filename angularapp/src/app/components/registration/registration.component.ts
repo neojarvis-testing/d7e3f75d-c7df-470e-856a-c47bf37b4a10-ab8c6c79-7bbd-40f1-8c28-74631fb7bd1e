@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
-
+ 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -21,12 +21,12 @@ export class RegistrationComponent implements OnInit {
   confirmPassword: string = '';
   secretKey: string = 'admin@training'; // Secret key for Admin registration
   enteredkey: string = '';
-
+ 
   constructor(private authService: AuthService, private router: Router) { }
-
+ 
   ngOnInit(): void {
   }
-
+ 
   userAlreadyExists: boolean = false;
   errorMessage: string = '';
   register(): void {
@@ -51,7 +51,7 @@ export class RegistrationComponent implements OnInit {
           });
           return;
         }
-  
+ 
         this.authService.register(this.user).subscribe(
           (res) => {
             console.log("Registration successful", res);
@@ -89,8 +89,8 @@ export class RegistrationComponent implements OnInit {
         });
       }
       console.log("here5")
-
-
+ 
+ 
   }
 }
-
+ 

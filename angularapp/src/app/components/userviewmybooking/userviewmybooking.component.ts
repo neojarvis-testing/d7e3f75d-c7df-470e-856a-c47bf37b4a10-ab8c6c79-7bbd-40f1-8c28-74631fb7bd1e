@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import * as bootstrap from 'bootstrap';
 import { Booking } from 'src/app/models/booking.model';
 import { RoomService } from 'src/app/services/room.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-userviewmybooking',
@@ -23,13 +25,26 @@ export class UserviewmybookingComponent implements OnInit {
     this.userId = this.uid;
     this.loadUserBookings();
   }
-
+  
   loadUserBookings(): void {
+    Swal.fire({
+      title: 'Loading...',
+      text: 'Please wait while we fetch your bookings.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  
     this.roomService.getBookingsByUserId(this.userId).subscribe((res) => {
       this.bookings = res;
       this.filteredBookings = [...this.bookings];
+      Swal.close(); // Close the loading alert
+    }, (error) => {
+      Swal.fire('Error', 'Failed to load bookings. Please try again later.', 'error');
     });
   }
+  
 
   searchBookings(): void {
     if (this.searchQuery) {
@@ -49,10 +64,24 @@ export class UserviewmybookingComponent implements OnInit {
 
   deleteBooking(): void {
     if (this.bookingToDelete) {
-      console.log("Booking to be deleted", this.bookingToDelete);
+      Swal.fire({
+        title: 'Deleting...',
+        text: 'Please wait while we delete your booking.',
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        }
+      });
+  
       this.roomService.deleteBooking(this.bookingToDelete.BookingId).subscribe(() => {
-        this.filteredBookings = this.filteredBookings.filter((item) => item.BookingId !== this.bookingToDelete.BookingId);
+        this.filteredBookings = this.filteredBookings.filter((item) => item.BookingId != this.bookingToDelete.BookingId);
+        Swal.fire('Deleted!', 'Your booking has been deleted.', 'success');
+      }, (error) => {
+        Swal.fire('Error', 'Failed to delete booking. Please try again later.', 'error');
       });
     }
   }
+  
+
+
 }
