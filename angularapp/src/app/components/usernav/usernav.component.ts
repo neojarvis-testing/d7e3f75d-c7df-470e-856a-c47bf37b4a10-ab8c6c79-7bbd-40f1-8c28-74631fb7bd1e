@@ -32,13 +32,6 @@ export class UsernavComponent implements OnInit {
 
 
   lout(): void {
-<<<<<<< HEAD
-    this.service.logout();
-    this.router.navigate([`/login`]); 
-  }
- 
- 
-=======
     Swal.fire({
       title: 'Are you sure?',
       text: 'Do you really want, logout?',
@@ -53,7 +46,6 @@ export class UsernavComponent implements OnInit {
       }
     });
   }
->>>>>>> 5f53b7ea1dc890501e1422af8dd9aa6202d7d72b
 }
 
 

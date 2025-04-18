@@ -11,12 +11,9 @@
             required
             #usernameField="ngModel"
         >
-<<<<<<< HEAD
-        <div *ngIf="usernameField.touched && usernameField.dirty && usernameField.invalid" class="error">
-=======
         <!-- Error message for username -->
         <div *ngIf="(loginForm.submitted && usernameField.invalid) || (usernameField.invalid && (usernameField.dirty || usernameField.touched))" class="error">
->>>>>>> 5f53b7ea1dc890501e1422af8dd9aa6202d7d72b
+
             Username is required.
         </div>
 
@@ -30,12 +27,9 @@
             required
             #passwordField="ngModel"
         >
-<<<<<<< HEAD
-        <div *ngIf="passwordField.touched && passwordField.dirty && passwordField.invalid" class="error">
-=======
         <!-- Error message for password -->
         <div *ngIf="(loginForm.submitted && passwordField.invalid) || (passwordField.invalid && (passwordField.dirty || passwordField.touched))" class="error">
->>>>>>> 5f53b7ea1dc890501e1422af8dd9aa6202d7d72b
+
             Password is required.
         </div>
 
