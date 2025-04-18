@@ -30,10 +30,10 @@ export class UsernavComponent implements OnInit {
 
   }
 
-  lout(): void {
-    this.service.logout();
-    this.router.navigate([`/login`]); 
-  }
+  // lout(): void {
+  //   this.service.logout();
+  //   this.router.navigate([`/login`]); 
+  // }
  
   lout(): void {
     this.service.logout();
