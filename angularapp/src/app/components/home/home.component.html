@@ -1,89 +1,169 @@
-<!-- <h1>Hotel Booking Hub</h1> -->
 <div class="home-container">
-  <header class="home-header">
-    <div class="image-container">
-      <img src= "/assets/images/philip-jahn-PYkpulrIMG0-unsplash.jpg" alt="A stunning accommodation">
-      <div class="text-overlay">
-        <h1>Hotel Booking Hub</h1>
-        <p>Your gateway to unforgettable stays.</p>
+
+  <!-- Hero Section -->
+ 
+  <section class="hero-section">
+ 
+   <div class="hero-content">
+ 
+    <h1 class="main-title">HOTEL BOOKING HUB</h1>
+ 
+    <p class="hero-subtitle">Where Luxury Meets Comfort</p>
+ 
+    <div class="hero-cta">
+ 
+     <button class="explore-button">EXPLORE DESTINATIONS</button>
+ 
+    </div>
+ 
+   </div>
+ 
+   <div class="hero-image"></div>
+ 
+  </section>
+ 
+ 
+ 
+  <!-- Value Proposition Section -->
+ 
+  <section class="value-section">
+ 
+   <div class="value-card">
+ 
+    <div class="value-icon">✧</div>
+ 
+    <h3>Curated Selection</h3>
+ 
+    <p>Only the finest hotels that meet our exacting standards</p>
+ 
+   </div>
+ 
+   <div class="value-card">
+ 
+    <div class="value-icon">✧</div>
+ 
+    <h3>Best Price Guarantee</h3>
+ 
+    <p>We'll match any lower price you find elsewhere</p>
+ 
+   </div>
+ 
+   <div class="value-card">
+ 
+    <div class="value-icon">✧</div>
+ 
+    <h3>24/7 Support</h3>
+ 
+    <p>Our travel experts are always available to assist you</p>
+ 
+   </div>
+ 
+  </section>
+ 
+ 
+ 
+  <!-- Featured Destinations -->
+ 
+  <section class="destinations-section">
+ 
+   <h2 class="section-title">FEATURED DESTINATIONS</h2>
+ 
+   <div class="destinations-grid">
+ 
+    <div class="destination-card" *ngFor="let destination of featuredDestinations">
+ 
+     <div class="destination-image" [style.background-image]="'url(' + destination.image + ')'"></div>
+ 
+     <div class="destination-overlay">
+ 
+      <h3 class="destination-title" >{{destination.name}}</h3>
+ 
+      <p>{{destination.properties}}+ properties</p>
+ 
+     </div>
+ 
+    </div>
+ 
+   </div>
+ 
+  </section>
+ 
+ 
+ 
+  <!-- Luxury Experience Section -->
+ 
+  <section class="luxury-section">
+ 
+   <div class="luxury-content">
+ 
+    <h2 class="luxury-title">THE ULTIMATE LUXURY EXPERIENCE</h2>
+ 
+    <p class="luxury-description">Immerse yourself in unparalleled comfort at the world's most exclusive resorts and boutique hotels, carefully selected by our team of hospitality experts.</p>
+ 
+    <button class="luxury-button">DISCOVER LUXURY</button>
+ 
+   </div>
+ 
+   <div class="luxury-image"></div>
+ 
+  </section>
+ 
+ 
+ 
+  <!-- Testimonials -->
+ 
+  <section class="testimonials-section">
+ 
+   <h2 class="section-title">WHAT OUR GUESTS SAY</h2>
+ 
+   <div class="testimonials-grid">
+ 
+    <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+ 
+     <div class="testimonial-rating">★★★★★</div>
+ 
+     <p class="testimonial-text">"{{testimonial.text}}"</p>
+ 
+     <div class="testimonial-author">
+ 
+      <div class="author-avatar" [style.background-image]="'url(' + testimonial.avatar + ')'"></div>
+ 
+      <div class="author-info">
+ 
+       <h4 class="author-name">{{testimonial.name}}</h4>
+ 
+       <p>{{testimonial.location}}</p>
+ 
       </div>
+ 
+     </div>
+ 
     </div>
-  </header>
-
-  <section class="home-content">
-    <h2>Discover Your Perfect Stay</h2>
-    <p>
-      From cozy boutique hotels to grand resorts, find the ideal accommodation tailored to your needs.
-    </p>
+ 
+   </div>
+ 
   </section>
 
+  <!-- Email Subscription -->
 
-  <section class="features">
-    <div class="feature">
-      <h3>Easy Booking</h3>
-      <p>Book your stay in just a few clicks.</p>
-    </div>
-    <div class="feature">
-      <h3>Exclusive Deals</h3>
-      <p>Enjoy discounts and special offers.</p>
-    </div>
-    <div class="feature">
-      <h3>24/7 Support</h3>
-      <p>We're here to assist you anytime.</p>
-    </div>
-  </section>
+ <section class="newsletter-section">
 
-  <section class="gallery">
-    <h2>Explore Our Destinations</h2>
+  <div class="newsletter-content">
 
-    <div class="gallery-images">
-      
-      <img src="/assets/images/paolo-nicolello-2gOxKj594nM-unsplash.jpg" alt="Beautiful destination 1">
-      <img src="/assets/images/valeriia-bugaiova-_pPHgeHz1uk-unsplash.jpg" alt="Beautiful destination 2">
-      <img src="/assets/images/jorg-angeli-1tyuLfDOnG0-unsplash.jpg" alt="Beautiful destination 3">
-      <img src="/assets/images/rio-lecatompessy-RFnTSblabhA-unsplash.jpg" alt="Beautiful destination 1">
-      <img src="/assets/images/jason-briscoe-76-58HpxvpQ-unsplash.jpg" alt="Beautiful destination 2">
-    
-    </div>
-  </section>
-  
-  <section class="reviews">
-    <h2>What Our Guests Say</h2>
-    <div class="reviews-container">
-      <div class="review">
-        <p>"Absolutely loved my stay! The service was impeccable."</p>
-        <span>- Anna D.</span>
-      </div>
-      <div class="review">
-        <p>"A luxurious experience from start to finish."</p>
-        <span>- Mark P.</span>
-      </div>
-      <div class="review">
-        <p>"A luxurious experience from start to finish."</p>
-        <span>- Mark P.</span>
-    </div>
-    <div class="review">
-        <p>"The best vacation I've ever had. The amenities were top-notch!"</p>
-        <span>- Emily R.</span>
-    </div>
-    <div class="review">
-        <p>"Our family had an unforgettable time, and the kids loved it too."</p>
-        <span>- Raj S.</span>
-    </div>
-    <div class="review">
-        <p>"LuxeStay is truly the definition of luxury. Can't wait to visit again."</p>
-        <span>- Maria T.</span>
-    </div>
-      
-    </div>
-  </section>
-  
-  <footer class="home-footer">
-    <h2>Join Our Newsletter</h2>
-    <p>Stay updated with exclusive offers and travel inspiration.</p>
-    <form>
-      <input type="email" placeholder="Enter your email">
-      <button type="submit">Subscribe</button>
-    </form>
-  </footer>
-</div>
+   <h2 class="newsletter-title">STAY INSPIRED</h2>
+
+   <p class="newsletter-text">Subscribe to receive exclusive hotel openings, travel inspiration, and special offers curated by our team.</p>
+
+   <form class="newsletter-form">
+
+    <input type="email" placeholder="Your email address" class="newsletter-input">
+
+    <button type="submit" class="newsletter-button">SUBSCRIBE</button>
+
+   </form>
+
+  </div>
+
+ </section>
+ 
+ </div>

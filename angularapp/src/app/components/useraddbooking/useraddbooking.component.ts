@@ -30,15 +30,7 @@ export class UseraddbookingComponent implements OnInit {
   errorMessage: string = '';
   uid:number;
   uname:string;
-  // User:User = {
-  //   UserId: 0,
-  //   Email: '',
-  //   Password: '',
-  //   Username: '',
-  //   MobileNumber: '',
-  //   UserRole: 'User'
-  // }
-
+  
   constructor(private roomService: RoomService, private router: Router, private authService: AuthService, private route: ActivatedRoute) {
     this.uid = parseInt(localStorage.getItem('userId'));
     this.booking.UserId = this.uid;
@@ -50,28 +42,24 @@ export class UseraddbookingComponent implements OnInit {
     })
     console.log("UserId: "+ this.booking.UserId)
     console.log("Room Id: "+ this.booking.RoomId)
-     
-   }
-
-
-  ngOnInit(): void {
   }
 
-  validateDates() {
+  ngOnInit(): void {}
+
+  validateDates(): void {
     const checkInDate = new Date(this.booking.CheckInDate);
     const checkOutDate = new Date(this.booking.CheckOutDate);
 
     if (this.booking.CheckInDate && this.booking.CheckOutDate) {
-        if (checkInDate >= checkOutDate) {
-            this.dateError = true;
-            this.errorMessage = 'Check-In Date must be before Check-Out Date.';
-        }else{
-          this.dateError = false;
-          this.errorMessage = '';
-        }
+      if (checkInDate >= checkOutDate) {
+        this.dateError = true;
+        this.errorMessage = 'Check-In Date must be before Check-Out Date.';
+      } else {
+        this.dateError = false;
+        this.errorMessage = '';
       }
-}
-
+    }
+  }
 
   isValidBookingForm(): boolean {
     if (this.booking.CheckInDate.trim() &&
@@ -79,13 +67,14 @@ export class UseraddbookingComponent implements OnInit {
         this.booking.Status.trim() &&
         this.booking.SpecialRequests.trim() &&
         this.booking.BookingPurpose.trim() &&
-        this.booking.AdditionalComments.trim()) {
-      return true;
+        this.booking.AdditionalComments.trim())
+    {
+    return true;
     }
     return false;
   }
 
-  addBooking() {
+  addBooking(): void {
     console.log("Addddd1");
     this.validateDates();
     if (this.dateError) {
@@ -112,12 +101,12 @@ export class UseraddbookingComponent implements OnInit {
     }
   }
 
-  showSuccessModal() {
+  showSuccessModal(): void {
     var myModal = new bootstrap.Modal(document.getElementById('successModal'));
     myModal.show();
   }
 
-  closeModal() {
+  closeModal(): void {
     var myModal = bootstrap.Modal.getInstance(document.getElementById('successModal'));
     myModal.hide();
     // Reset the form state
@@ -125,7 +114,7 @@ export class UseraddbookingComponent implements OnInit {
     this.router.navigate(['/userviewroom']);
   }
 
-  resetBooking() {
+  resetBooking(): void {
     this.booking = {
       Username:'',
       BookingId: 0,
@@ -140,7 +129,7 @@ export class UseraddbookingComponent implements OnInit {
     };
   }
 
-  backBooking() {
+  backBooking(): void {
     this.router.navigate([`/userviewroom`]);
   }
 }
