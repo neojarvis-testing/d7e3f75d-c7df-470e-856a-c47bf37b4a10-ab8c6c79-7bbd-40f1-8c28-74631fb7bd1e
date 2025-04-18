@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./userviewfeedback.component.css']
 })
 export class UserviewfeedbackComponent implements OnInit {
-
   userId: number = 0;
   uid: number = 0;
   feedbacks: Feedback[] = [];

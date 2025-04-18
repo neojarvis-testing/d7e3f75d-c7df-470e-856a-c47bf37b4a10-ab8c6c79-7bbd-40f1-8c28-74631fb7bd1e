@@ -14,7 +14,7 @@ export class UserviewmybookingComponent implements OnInit {
   filteredBookings: Booking[] = [];
   searchQuery: string = '';
   bookingToDelete: Booking | null = null;
-  uid:number;
+  uid: number;
 
   constructor(private roomService: RoomService) { }
 
@@ -23,16 +23,19 @@ export class UserviewmybookingComponent implements OnInit {
     this.userId = this.uid;
     this.loadUserBookings();
   }
-  loadUserBookings():void{
+
+  loadUserBookings(): void {
     this.roomService.getBookingsByUserId(this.userId).subscribe((res) => {
       this.bookings = res;
       this.filteredBookings = [...this.bookings];
     });
   }
+
   searchBookings(): void {
     if (this.searchQuery) {
       this.filteredBookings = this.bookings.filter(booking =>
-     booking.Room && booking.Room.HotelName.toLowerCase().includes(this.searchQuery.toLowerCase()));
+        booking.Room && booking.Room.HotelName.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
     } else {
       this.filteredBookings = [...this.bookings];
     }
@@ -48,10 +51,8 @@ export class UserviewmybookingComponent implements OnInit {
     if (this.bookingToDelete) {
       console.log("Booking to be deleted", this.bookingToDelete);
       this.roomService.deleteBooking(this.bookingToDelete.BookingId).subscribe(() => {
-        this.filteredBookings = this.filteredBookings.filter((item) => item.BookingId != this.bookingToDelete.BookingId);
-      })
+        this.filteredBookings = this.filteredBookings.filter((item) => item.BookingId !== this.bookingToDelete.BookingId);
+      });
     }
   }
-
-
 }
