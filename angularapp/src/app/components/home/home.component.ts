@@ -1,5 +1,7 @@
 
 import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 
@@ -15,9 +17,21 @@ import { Component, AfterViewInit } from '@angular/core';
 
 export class HomeComponent implements AfterViewInit {
 
+   constructor(private router: Router){}
  ngAfterViewInit() {
 
  }
+ subscribe(): void{
+   Swal.fire({
+      icon: 'success',
+      title: 'Subscription Successful',
+      text: 'You have been subscribed successfully!'
+    })
+ }
+
+   navigation():void{
+      this.router.navigate([`/login`]);
+   }
 
  featuredDestinations = [
 
