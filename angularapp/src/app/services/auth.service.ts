@@ -9,6 +9,8 @@ import { Login } from '../models/login.model';
 })
 
 export class AuthService {
+  
+  public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
 
 
   private currentUserRole = new BehaviorSubject<string | null>(null);

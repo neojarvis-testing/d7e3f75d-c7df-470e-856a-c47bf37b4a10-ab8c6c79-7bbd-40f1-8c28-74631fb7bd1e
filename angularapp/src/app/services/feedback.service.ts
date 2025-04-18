@@ -8,7 +8,8 @@ providedIn: 'root'
 })
 export class FeedbackService {
   
-
+    public apiUrl = "https://8080-caabadbfacbfbcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io";
+    
 constructor(private http: HttpClient) {}
 
 private getAuthHeaders(): HttpHeaders {
