@@ -64,6 +64,7 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,User")]
         [HttpPut("{bookingId}")]
         public async Task<ActionResult> UpdateBooking(int bookingId, [FromBody] Booking booking)
         {
