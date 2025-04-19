@@ -10,6 +10,7 @@ import { GridOptions } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 declare var bootstrap: any;
 
+
 @Component({
   selector: 'app-adminviewfeedback',
   templateUrl: './adminviewfeedback.component.html',
@@ -49,6 +50,15 @@ export class AdminviewfeedbackComponent implements OnInit {
   }
 
   loadFeedbacks(): void {
+    Swal.fire({
+      title: 'Loading Feedbacks...',
+      text: 'Please wait while we load the feedbacks.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+  
     this.feedbackService.getFeedbacks().subscribe(
       (res) => {
         console.log(res);
@@ -56,12 +66,20 @@ export class AdminviewfeedbackComponent implements OnInit {
         this.filteredFeedbacks = res;
         this.paginateFeedbacks();
         this.setupPagination();
+        Swal.close(); // Close the loading spinner when data is successfully loaded
       },
       (error) => {
         console.error('Error fetching feedbacks:', error);
+        Swal.close(); // Close the loading spinner if there's an error
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Failed to load feedbacks. Please try again later.'
+        });
       }
     );
   }
+  
 
   paginateFeedbacks(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
