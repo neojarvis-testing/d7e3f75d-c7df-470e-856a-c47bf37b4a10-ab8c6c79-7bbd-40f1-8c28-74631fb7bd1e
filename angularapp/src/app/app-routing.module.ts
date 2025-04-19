@@ -15,6 +15,8 @@ import { UserviewroomComponent } from './components/userviewroom/userviewroom.co
 import { UserviewmybookingComponent } from './components/userviewmybooking/userviewmybooking.component';
 import { UseraddfeedbackComponent } from './components/useraddfeedback/useraddfeedback.component';
 import { UserviewfeedbackComponent } from './components/userviewfeedback/userviewfeedback.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainpageComponent } from './components/mainpage/mainpage.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -32,6 +34,8 @@ const routes: Routes = [
   {path: 'userviewmybooking', component: UserviewmybookingComponent, canActivate: [AuthGuard]},
   {path: 'useraddfeedback', component: UseraddfeedbackComponent, canActivate: [AuthGuard]},
   {path: 'userviewfeedback', component: UserviewfeedbackComponent, canActivate: [AuthGuard]},
+  {path: 'footer' , component: FooterComponent},
+  {path: 'mainpage', component: MainpageComponent}
 ]
 
 

@@ -22,6 +22,8 @@ import { UserviewroomComponent } from './components/userviewroom/userviewroom.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AgGridModule } from 'ag-grid-angular';
+import { FooterComponent } from './components/footer/footer.component';
+import { MainpageComponent } from './components/mainpage/mainpage.component';
 
 
 @NgModule({
@@ -44,6 +46,8 @@ import { AgGridModule } from 'ag-grid-angular';
     UserviewfeedbackComponent,
     UserviewmybookingComponent,
     UserviewroomComponent,
+    FooterComponent,
+    MainpageComponent
   ],
   imports: [
     BrowserModule,

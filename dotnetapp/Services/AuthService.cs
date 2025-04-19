@@ -34,8 +34,8 @@ namespace dotnetapp.Services
             var foundUser = await _userManager.FindByEmailAsync(model.Email);
             if (foundUser != null)
             {
-                Console.WriteLine("User already exists");
-                return (0, "User already exists");
+                Console.WriteLine("User with same Email already exists");
+                return (0, "User with the same Email already exists");
             }
             var user = new ApplicationUser
             {
@@ -64,7 +64,7 @@ namespace dotnetapp.Services
             }
             else if (result.Errors.Any(e => e.Code == "DuplicateUserName"))
             {
-                return (0, "User already exists");
+                return (0, "User with the same Username already exists");
             }
             return (0, "User creation failed! Please check user details and try again.");
         }

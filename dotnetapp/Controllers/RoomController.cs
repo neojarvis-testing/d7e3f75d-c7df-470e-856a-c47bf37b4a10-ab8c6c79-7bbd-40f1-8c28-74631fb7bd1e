@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
             _roomService = roomService;
         }
 
-
+        [Authorize(Roles = "Admin,User")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetAllRooms()
         {
@@ -37,7 +37,7 @@ namespace dotnetapp.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
+        [Authorize(Roles = "Admin,User")]
         [HttpGet("{roomId}")]
         public async Task<ActionResult<Room>> GetRoomById(int roomId)
         {
