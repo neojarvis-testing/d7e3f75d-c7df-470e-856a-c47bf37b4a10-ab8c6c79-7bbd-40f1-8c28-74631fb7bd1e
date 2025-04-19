@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Feedback } from 'src/app/models/feedback.model';
 import { FeedbackService } from 'src/app/services/feedback.service';
 declare var bootstrap: any; 
@@ -18,7 +19,7 @@ export class UseraddfeedbackComponent implements OnInit {
   }
 
   userId:number;
-  constructor(private feedbackService:FeedbackService) {
+  constructor(private feedbackService:FeedbackService, private router: Router) {
     this.userId = parseInt(localStorage.getItem('userId'));
     this.feedback.UserId = this.userId;
   }
@@ -44,5 +45,6 @@ export class UseraddfeedbackComponent implements OnInit {
     if (feedbackForm) {
     feedbackForm.reset();
     } 
+    this.router.navigate([`/userviewfeedback`]);
   }
 } 

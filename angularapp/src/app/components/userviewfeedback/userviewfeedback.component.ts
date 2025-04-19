@@ -19,7 +19,7 @@ export class UserviewfeedbackComponent implements OnInit {
   currentPage: number = 1;
   itemsPerPage: number = 6;
   totalPagesArray: number[] = [];
-
+  
   constructor(private authService: AuthService, private feedbackService: FeedbackService) {
     this.uid = parseInt(localStorage.getItem("userId"));
     this.userId = this.uid;
@@ -100,5 +100,8 @@ export class UserviewfeedbackComponent implements OnInit {
       });
     }
   }
+  //========================
+
+
 }
 

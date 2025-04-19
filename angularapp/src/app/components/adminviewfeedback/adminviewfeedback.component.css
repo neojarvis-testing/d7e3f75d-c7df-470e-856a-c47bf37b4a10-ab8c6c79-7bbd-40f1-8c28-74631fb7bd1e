@@ -66,3 +66,12 @@
   color: #fff;
 }
 
+#searchx {
+  background-color: #7c7cc2;
+  width: 67px;
+  height: 34px;
+  color: #402c2c;
+  border: 2px double black;
+  margin-left: 13px;
+}
+
