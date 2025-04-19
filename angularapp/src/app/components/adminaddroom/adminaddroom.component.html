@@ -1,94 +1,189 @@
-<div class="container mt-5">
+<div class="container mt-5 add-room-container">
+
   <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card" style="border-color: #aeded9;">
-        <div class="card-body">
-          <h1 class="text-center mb-4" style="color: #004d40;">Add New Room</h1>
-          <hr style="border-color: #004d40;">
-          <form (ngSubmit)="addRoom(); roomForm.form.markAllAsTouched();" #roomForm="ngForm">
-            <div class="form-group mb-3">
-              <label for="hotelName">Hotel Name<span class="text-danger">*</span></label>
-              <input type="text" id="hotelName" [(ngModel)]="room.HotelName" name="hotelName" required #hotelNameNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter hotel name">
-              <div *ngIf="hotelNameNg.invalid && (hotelNameNg.dirty || hotelNameNg.touched)" class="text-danger">Hotel Name is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="roomType">Room Type<span class="text-danger">*</span></label>
-              <input type="text" id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter room type">
-              <div *ngIf="roomTypeNg.invalid && (roomTypeNg.dirty || roomTypeNg.touched)" class="text-danger">Room Type is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="noOfRooms">Number of Rooms<span class="text-danger">*</span></label>
-              <input type="number" id="noOfRooms" [(ngModel)]="room.NoOfRooms" name="noOfRooms" required #noOfRoomsNg="ngModel" min="1" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter number of rooms">
-              <div *ngIf="noOfRoomsNg.invalid && (noOfRoomsNg.dirty || noOfRoomsNg.touched)" class="text-danger">Number of Rooms is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="pricePerNight">Price Per Night<span class="text-danger">*</span></label>
-              <input type="number" id="pricePerNight" [(ngModel)]="room.PricePerNight" name="pricePerNight" required #pricePerNightNg="ngModel" min="1" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter price per night">
-              <div *ngIf="pricePerNightNg.invalid && (pricePerNightNg.dirty || pricePerNightNg.touched)" class="text-danger">Price Per Night is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="location">Location<span class="text-danger">*</span></label>
-              <input type="text" id="location" [(ngModel)]="room.Location" name="location" required #locationNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter location">
-              <div *ngIf="locationNg.invalid && (locationNg.dirty || locationNg.touched)" class="text-danger">Location is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="bedType">Bed Type<span class="text-danger">*</span></label>
-              <input type="text" id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" minlength="3" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter bed type">
-              <div *ngIf="bedTypeNg.invalid && (bedTypeNg.dirty || bedTypeNg.touched)" class="text-danger">Bed Type is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="isAvailable">Is Available<span class="text-danger">*</span></label>
-              <select name="isAvailable" id="isAvailable" [(ngModel)]="room.IsAvailable" required #isAvailableNg="ngModel" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;">
-                <option style="background-color: white;" [ngValue]="false">No</option>
-                <option style="background-color: white;" [ngValue]="true">Yes</option>
-              </select>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="description">Description<span class="text-danger">*</span></label>
-              <textarea id="description" [(ngModel)]="room.Description" name="description" required #descriptionNg="ngModel" minlength="2" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter description"></textarea>
-              <div *ngIf="descriptionNg.invalid && (descriptionNg.dirty || descriptionNg.touched)" class="text-danger">Description is required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="facilities">Facilities<span class="text-danger">*</span></label>
-              <textarea id="facilities" [(ngModel)]="room.Facilities" name="facilities" required #facilitiesNg="ngModel" minlength="2" class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Enter facilities"></textarea>
-              <div *ngIf="facilitiesNg.invalid && (facilitiesNg.dirty || facilitiesNg.touched)" class="text-danger">Facilities are required.</div>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="imageUrl">Image URL<span class="text-danger">*</span></label>
-              <input type="file" id="imageUrl" (change)="onFileSelected($event)" name="imageUrl" #fileInput required class="form-control" style="background-color: #f1f8e9; border-color: #aeded9;" placeholder="Upload image">
-            </div>
-
-            <div *ngIf="errorMessage" class="error-message text-danger">
-              {{ errorMessage }}
-            </div>
-            <div class="form-group">
-              <button type="submit" [disabled]="roomForm.invalid" class="btn btn-success btn-block mt-3 form-control">Submit</button>
-            </div>      
-          </form>
-        </div>
-      </div>
+ 
+   <div class="col-md-6">
+ 
+    <div class="card add-room-card">
+ 
+     <div class="card-body add-room-card-body">
+ 
+      <h1 class="text-center mb-4 add-room-title">Add New Room</h1>
+ 
+      <div class="add-room-title-divider"></div>
+ 
+      <form (ngSubmit)="addRoom(); roomForm.form.markAllAsTouched();" #roomForm="ngForm" class="add-room-form">
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="hotelName" class="add-room-label">HOTEL NAME<span class="text-danger">*</span></label>
+ 
+        <input type="text" id="hotelName" [(ngModel)]="room.HotelName" name="hotelName" required #hotelNameNg="ngModel" minlength="3" class="form-control add-room-input" placeholder="Enter hotel name">
+ 
+        <div *ngIf="hotelNameNg.invalid && (hotelNameNg.dirty || hotelNameNg.touched)" class="add-room-error">Hotel Name is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="roomType" class="add-room-label">ROOM TYPE<span class="text-danger">*</span></label>
+ 
+        <select id="roomType" [(ngModel)]="room.RoomType" name="roomType" required #roomTypeNg="ngModel" class="form-control add-room-input">
+ 
+         <option value="" disabled selected>Select room type</option>
+ 
+         <option value="Suite">Suite</option>
+ 
+         <option value="Premium">Premium</option>
+ 
+         <option value="Deluxe">Deluxe</option>
+ 
+         <option value="Executive">Executive</option>
+ 
+        </select>
+ 
+        <div *ngIf="roomTypeNg.invalid && (roomTypeNg.dirty || roomTypeNg.touched)" class="add-room-error">Room Type is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="noOfRooms" class="add-room-label">NUMBER OF ROOMS<span class="text-danger">*</span></label>
+ 
+        <input type="number" id="noOfRooms" [(ngModel)]="room.NoOfRooms" name="noOfRooms" required #noOfRoomsNg="ngModel" min="1" class="form-control add-room-input" placeholder="Enter number of rooms">
+ 
+        <div *ngIf="noOfRoomsNg.invalid && (noOfRoomsNg.dirty || noOfRoomsNg.touched)" class="add-room-error">Number of Rooms is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="pricePerNight" class="add-room-label">PRICE PER NIGHT<span class="text-danger">*</span></label>
+ 
+        <input type="number" id="pricePerNight" [(ngModel)]="room.PricePerNight" name="pricePerNight" required #pricePerNightNg="ngModel" min="1" class="form-control add-room-input" placeholder="Enter price per night">
+ 
+        <div *ngIf="pricePerNightNg.invalid && (pricePerNightNg.dirty || pricePerNightNg.touched)" class="add-room-error">Price Per Night is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="location" class="add-room-label">LOCATION<span class="text-danger">*</span></label>
+ 
+        <input type="text" id="location" [(ngModel)]="room.Location" name="location" required #locationNg="ngModel" minlength="3" class="form-control add-room-input" placeholder="Enter location">
+ 
+        <div *ngIf="locationNg.invalid && (locationNg.dirty || locationNg.touched)" class="add-room-error">Location is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="bedType" class="add-room-label">BED TYPE<span class="text-danger">*</span></label>
+ 
+        <select id="bedType" [(ngModel)]="room.BedType" name="bedType" required #bedTypeNg="ngModel" class="form-control add-room-input">
+ 
+         <option value="" disabled selected>Select bed type</option>
+ 
+         <option value="Single">Single</option>
+ 
+         <option value="Deluxe">Double</option>
+ 
+         <option value="Triple">Triple</option>
+ 
+        </select>
+ 
+        <div *ngIf="bedTypeNg.invalid && (bedTypeNg.dirty || bedTypeNg.touched)" class="add-room-error">Bed Type is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="isAvailable" class="add-room-label">IS AVAILABLE<span class="text-danger">*</span></label>
+ 
+        <select name="isAvailable" id="isAvailable" [(ngModel)]="room.IsAvailable" required #isAvailableNg="ngModel" class="form-control add-room-input">
+ 
+         <option [ngValue]="false">No</option>
+ 
+         <option [ngValue]="true">Yes</option>
+ 
+        </select>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="description" class="add-room-label">DESCRIPTION<span class="text-danger">*</span></label>
+ 
+        <textarea id="description" [(ngModel)]="room.Description" name="description" required #descriptionNg="ngModel" minlength="2" class="form-control add-room-textarea" placeholder="Enter description"></textarea>
+ 
+        <div *ngIf="descriptionNg.invalid && (descriptionNg.dirty || descriptionNg.touched)" class="add-room-error">Description is required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="facilities" class="add-room-label">FACILITIES<span class="text-danger">*</span></label>
+ 
+        <textarea id="facilities" [(ngModel)]="room.Facilities" name="facilities" required #facilitiesNg="ngModel" minlength="2" class="form-control add-room-textarea" placeholder="Enter facilities"></textarea>
+ 
+        <div *ngIf="facilitiesNg.invalid && (facilitiesNg.dirty || facilitiesNg.touched)" class="add-room-error">Facilities are required.</div>
+ 
+       </div>
+ 
+       <div class="form-group mb-3 add-room-form-group">
+ 
+        <label for="imageUrl" class="add-room-label">IMAGE URL<span class="text-danger">*</span></label>
+ 
+        <input type="file" id="imageUrl" (change)="onFileSelected($event)" name="imageUrl" #fileInput required class="form-control add-room-file-input">
+ 
+       </div>
+ 
+       <div *ngIf="errorMessage" class="add-room-error-message">
+ 
+        {{ errorMessage }}
+ 
+       </div>
+ 
+       <div class="form-group">
+ 
+        <button type="submit" [disabled]="roomForm.invalid" class="add-room-submit-button">Submit</button>
+ 
+       </div>
+ 
+      </form>
+ 
+     </div>
+ 
     </div>
+ 
+   </div>
+ 
   </div>
-</div>
-
-<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm">
-    <div class="modal-content">
-      <div class="modal-body text-center" style="text-align: center;text-decoration: solid;">
-        Room Added Successfully
-      </div>
-      <div class="modal-footer justify-content-center">
-        <button type="button" class="btn btn-primary" (click)="closeModal()" style="color: black;background-color: rgb(115, 152, 59);">OK</button>
-      </div>
+ 
+ </div>
+ 
+ 
+ 
+ <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+ 
+  <div class="modal-dialog modal-dialog-centered modal-sm add-room-success-modal">
+ 
+   <div class="modal-content add-room-success-content">
+ 
+    <div class="modal-body add-room-success-body text-center">
+ 
+     Room Added Successfully
+ 
     </div>
+ 
+    <div class="modal-footer add-room-success-footer justify-content-center">
+ 
+     <button type="button" class="add-room-success-button" (click)="closeModal()">OK</button>
+ 
+    </div>
+ 
+   </div>
+ 
   </div>
-</div>
+ 
+ </div>
