@@ -4,7 +4,6 @@ import { RoomService } from 'src/app/services/room.service';
 import { Booking } from 'src/app/models/booking.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-userviewroom',
@@ -20,7 +19,7 @@ export class UserviewroomComponent implements OnInit {
   paginatedRooms: Room[] = [];
   totalPagesArray: number[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6;
+  itemsPerPage: number = 9;
   uid:number;
 
   constructor(
@@ -64,30 +63,11 @@ export class UserviewroomComponent implements OnInit {
 
   loadUserBookings(): void {
     if (this.UserId) {
-      Swal.fire({
-        title: 'Loading Bookings...',
-        text: 'Please wait while we load your bookings.',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        }
-      });
-  
       this.roomService.getBookingsByUserId(this.UserId).subscribe((res) => {
         this.bookings = res;
-        Swal.close(); // Close the loading spinner when data is successfully loaded
-      }, (error) => {
-        console.error('Error fetching user bookings:', error);
-        Swal.close(); // Close the loading spinner if there's an error
-        Swal.fire({
-          icon: 'error',
-          title: 'Error',
-          text: 'Failed to load bookings. Please try again later.'
-        });
       });
     }
   }
-  
 
   isRoomBookedByUser(roomId: number): boolean {
     return this.bookings.some((booking) => booking.RoomId === roomId);

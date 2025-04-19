@@ -18,7 +18,7 @@ export class AdminviewroomComponent implements OnInit {
   roomToDelete: Room | null = null;
   paginatedRooms: Room[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 6; // Number of items per page
+  itemsPerPage: number = 9; // Number of items per page
   totalPagesArray: number[] = [];
   totalPages: number = 1;
 
