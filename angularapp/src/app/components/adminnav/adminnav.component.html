@@ -16,7 +16,7 @@
                 </li>
                 <li *ngIf="userRole === 'Admin'" class="nav-item">
                     <select class="form-select" aria-label="Room options" (change)="onRoomOptionChange($event)" style="background: none; text-align: center; color: white; border: none;">
-                        <option value="Room" selected>Room</option>
+                        <option value="Room" selected disabled>Room</option>
                         <option value="post" style="color: black;">Add Room</option>
                         <option value="view" style="color: black;">View Room</option>
                     </select>
