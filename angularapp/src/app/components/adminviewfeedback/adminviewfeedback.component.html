@@ -1,76 +1,745 @@
-  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="userModalLabel">User Details</h5> 
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p><strong>Email:</strong> {{ selectedUser?.Email }}</p>
-          <p><strong>Username:</strong> {{ selectedUser?.Username }}</p>
-         <p><strong>Mobile Number:</strong> {{ selectedUser?.MobileNumber }}</p> 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin: auto;">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
- <div class="container mt-5">
-  <h2 class="text-center">Feedback Details</h2>
-  <table class="table table-bordered table-striped">
+
+<div class="feedback-details-container">
+
+  <h2 class="feedback-title">FEEDBACK DETAILS</h2>
+ 
+  <div class="title-divider"></div>
+ 
+ 
+ 
+  <div class="feedback-table-container">
+ 
+   <table class="feedback-table">
+ 
     <thead>
-      <tr>
-        <th>S No</th>
-        <th>User Name</th>
-        <th>Feedback</th>
-        <th>Posted Date</th>
-        <th>Action</th>
-      </tr>
+ 
+     <tr>
+ 
+      <th>S.No</th>
+ 
+      <th>User Name</th>
+ 
+      <th>Feedback</th>
+ 
+      <th>Posted Date</th>
+ 
+      <th>Action</th>
+ 
+     </tr>
+ 
     </thead>
+ 
     <tbody>
-      <tr *ngFor="let feedback of paginatedFeedbacks; let i = index">
-        <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
-        <td>{{ feedback.User?.Username }}</td>
-        <td>{{ feedback.FeedbackText }}</td>
-        <td>{{ feedback.Date | date: 'short' }}</td>
-        <td>
-          <button class="btn btn-primary" (click)="openModal(feedback.User)">Show Profile</button>
-        </td> 
-      </tr>
+ 
+     <tr *ngFor="let feedback of paginatedFeedbacks; let i = index">
+ 
+      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+ 
+      <td>{{ feedback.User?.Username }}</td>
+ 
+      <td class="feedback-text">{{ feedback.FeedbackText }}</td>
+ 
+      <td>{{ feedback.Date | date: 'mediumDate' }}</td>
+ 
+      <td>
+ 
+       <button class="profile-button" (click)="openModal(feedback.User)">
+ 
+        <i class="fas fa-user-circle"></i> View Profile
+ 
+       </button>
+ 
+      </td>
+ 
+     </tr>
+ 
     </tbody>
-  </table>
-  <div class="pagination-container">
-    <nav aria-label="Page navigation">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
-        </li>
-        <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
-          <a class="page-link" (click)="changePage(page)">{{ page }}</a>
-        </li>
-        <li class="page-item" [class.disabled]="currentPage === totalPagesArray.length">
-          <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
-        </li>
-      </ul>
+ 
+   </table>
+ 
+ 
+ 
+   <div class="pagination-container">
+ 
+    <nav class="pagination-nav">
+ 
+     <ul class="pagination">
+ 
+      <li class="page-item" [class.disabled]="currentPage === 1">
+ 
+       <a class="page-link" (click)="changePage(currentPage - 1)">
+ 
+        <i class="fas fa-chevron-left"></i> Previous
+ 
+       </a>
+ 
+      </li>
+ 
+      <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="page === currentPage">
+ 
+       <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+ 
+      </li>
+ 
+      <li class="page-item" [class.disabled]="currentPage === totalPagesArray.length">
+ 
+       <a class="page-link" (click)="changePage(currentPage + 1)">
+ 
+        Next <i class="fas fa-chevron-right"></i>
+ 
+       </a>
+ 
+      </li>
+ 
+     </ul>
+ 
     </nav>
+ 
+   </div>
+ 
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+ 
+ </div>
+ 
+ 
+ 
+ <!-- User Details Modal -->
+ 
+ <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+ 
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="userModalLabel">User Details</h5> 
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+ 
+   <div class="modal-content">
+ 
+    <div class="modal-header">
+ 
+     <h3 class="modal-title">USER PROFILE</h3>
+ 
+     <button type="button" class="close-button" data-bs-dismiss="modal" aria-label="Close">
+ 
+      <i class="fas fa-times"></i>
+ 
+     </button>
+ 
+    </div>
+ 
+    <div class="modal-body">
+ 
+     <div class="user-detail">
+ 
+      <span class="detail-icon"><i class="fas fa-envelope"></i></span>
+ 
+      <div>
+ 
+       <p class="detail-label">Email</p>
+ 
+       <p class="detail-value">{{ selectedUser?.Email }}</p>
+ 
       </div>
-      <div class="modal-body">
-        <p><strong>Email:</strong> {{ selectedUser?.Email }}</p>
-        <p><strong>Username:</strong> {{ selectedUser?.Username }}</p>
-        <p><strong>Mobile Number:</strong> {{ selectedUser?.MobileNumber }}</p> 
+ 
+     </div>
+ 
+     <div class="user-detail">
+ 
+      <span class="detail-icon"><i class="fas fa-user"></i></span>
+ 
+      <div>
+ 
+       <p class="detail-label">Username</p>
+ 
+       <p class="detail-value">{{ selectedUser?.Username }}</p>
+ 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin: auto;">Close</button>
+ 
+     </div>
+ 
+     <div class="user-detail">
+ 
+      <span class="detail-icon"><i class="fas fa-phone"></i></span>
+ 
+      <div>
+ 
+       <p class="detail-label">Mobile Number</p>
+ 
+       <p class="detail-value">{{ selectedUser?.MobileNumber }}</p>
+ 
       </div>
+ 
+     </div>
+ 
+    </div>
+ 
+    <div class="modal-footer">
+ 
+     <button type="button" class="modal-close-button" data-bs-dismiss="modal">
+ 
+      Close
+ 
+     </button>
+ 
+    </div>
+ 
+   </div>
+ 
+  </div>
+ 
+ </div>
+ 
+ 
+ 
+ <style>
+ 
+ /* Base Styles */
+ 
+ @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;500;600&display=swap');
+ 
+ @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+ 
+ 
+ 
+ .feedback-details-container {
+ 
+  font-family: 'Montserrat', sans-serif;
+ 
+  max-width: 1200px;
+ 
+  margin: 2rem auto;
+ 
+  padding: 2rem;
+ 
+  background-color: #F5EEDD;
+ 
+  border-radius: 10px;
+ 
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+ 
+ }
+ 
+ 
+ 
+ .feedback-title {
+ 
+  font-family: 'Playfair Display', serif;
+ 
+  font-weight: 700;
+ 
+  font-size: 2.2rem;
+ 
+  color: #077A7D;
+ 
+  text-align: center;
+ 
+  margin-bottom: 1.5rem;
+ 
+  letter-spacing: 1px;
+ 
+ }
+ 
+ 
+ 
+ .title-divider {
+ 
+  width: 80px;
+ 
+  height: 2px;
+ 
+  background: #7AE2CF;
+ 
+  margin: 0 auto 2rem;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table-container {
+ 
+  background: white;
+ 
+  border-radius: 8px;
+ 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+ 
+  overflow: hidden;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table {
+ 
+  width: 100%;
+ 
+  border-collapse: collapse;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table thead {
+ 
+  background-color: #077A7D;
+ 
+  color: white;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table th {
+ 
+  padding: 1rem;
+ 
+  text-align: left;
+ 
+  font-weight: 600;
+ 
+  text-transform: uppercase;
+ 
+  font-size: 0.85rem;
+ 
+  letter-spacing: 0.5px;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table td {
+ 
+  padding: 1rem;
+ 
+  border-bottom: 1px solid rgba(6, 32, 43, 0.1);
+ 
+  color: #06202B;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table tr:last-child td {
+ 
+  border-bottom: none;
+ 
+ }
+ 
+ 
+ 
+ .feedback-table tr:hover {
+ 
+  background-color: rgba(122, 226, 207, 0.05);
+ 
+ }
+ 
+ 
+ 
+ .feedback-text {
+ 
+  max-width: 300px;
+ 
+  white-space: nowrap;
+ 
+  overflow: hidden;
+ 
+  text-overflow: ellipsis;
+ 
+ }
+ 
+ 
+ 
+ .profile-button {
+ 
+  background: #077A7D;
+ 
+  color: white;
+ 
+  border: none;
+ 
+  padding: 0.5rem 1rem;
+ 
+  border-radius: 4px;
+ 
+  font-weight: 600;
+ 
+  cursor: pointer;
+ 
+  transition: all 0.3s ease;
+ 
+  display: flex;
+ 
+  align-items: center;
+ 
+  gap: 0.5rem;
+ 
+ }
+ 
+ 
+ 
+ .profile-button:hover {
+ 
+  background: #06202B;
+ 
+  transform: translateY(-1px);
+ 
+ }
+ 
+ 
+ 
+ .profile-button i {
+ 
+  font-size: 1.1rem;
+ 
+ }
+ 
+ 
+ 
+ /* Pagination Styles */
+ 
+ .pagination-container {
+ 
+  padding: 1.5rem;
+ 
+ }
+ 
+ 
+ 
+ .pagination-nav {
+ 
+  display: flex;
+ 
+  justify-content: center;
+ 
+ }
+ 
+ 
+ 
+ .pagination {
+ 
+  display: flex;
+ 
+  gap: 0.5rem;
+ 
+  list-style: none;
+ 
+  padding: 0;
+ 
+ }
+ 
+ 
+ 
+ .page-item {
+ 
+  &.disabled {
+ 
+   opacity: 0.5;
+ 
+   pointer-events: none;
+ 
+  }
+ 
+   
+ 
+  &.active .page-link {
+ 
+   background: #077A7D;
+ 
+   color: white;
+ 
+  }
+ 
+ }
+ 
+ 
+ 
+ .page-link {
+ 
+  padding: 0.5rem 1rem;
+ 
+  border: 1px solid rgba(6, 32, 43, 0.1);
+ 
+  border-radius: 4px;
+ 
+  color: #06202B;
+ 
+  text-decoration: none;
+ 
+  cursor: pointer;
+ 
+  transition: all 0.3s ease;
+ 
+  display: flex;
+ 
+  align-items: center;
+ 
+  gap: 0.5rem;
+ 
+ }
+ 
+ 
+ 
+ .page-link:hover {
+ 
+  background: rgba(122, 226, 207, 0.1);
+ 
+ }
+ 
+ 
+ 
+ /* Modal Styles */
+ 
+ .modal-content {
+ 
+  border-radius: 10px;
+ 
+  border: none;
+ 
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+ 
+ }
+ 
+ 
+ 
+ .modal-header {
+ 
+  background: #077A7D;
+ 
+  color: white;
+ 
+  padding: 1.5rem;
+ 
+  border-bottom: none;
+ 
+  position: relative;
+ 
+ }
+ 
+ 
+ 
+ .modal-title {
+ 
+  font-family: 'Playfair Display', serif;
+ 
+  font-weight: 700;
+ 
+  margin: 0;
+ 
+ }
+ 
+ 
+ 
+ .close-button {
+ 
+  position: absolute;
+ 
+  top: 1rem;
+ 
+  right: 1rem;
+ 
+  background: transparent;
+ 
+  border: none;
+ 
+  color: white;
+ 
+  font-size: 1.5rem;
+ 
+  cursor: pointer;
+ 
+  padding: 0.5rem;
+ 
+ }
+ 
+ 
+ 
+ .user-detail {
+ 
+  display: flex;
+ 
+  gap: 1rem;
+ 
+  align-items: center;
+ 
+  padding: 1rem;
+ 
+  border-bottom: 1px solid rgba(6, 32, 43, 0.1);
+ 
+ }
+ 
+ 
+ 
+ .user-detail:last-child {
+ 
+  border-bottom: none;
+ 
+ }
+ 
+ 
+ 
+ .detail-icon {
+ 
+  color: #077A7D;
+ 
+  font-size: 1.2rem;
+ 
+  width: 30px;
+ 
+  text-align: center;
+ 
+ }
+ 
+ 
+ 
+ .detail-label {
+ 
+  font-size: 0.8rem;
+ 
+  color: #077A7D;
+ 
+  font-weight: 600;
+ 
+  text-transform: uppercase;
+ 
+  letter-spacing: 0.5px;
+ 
+  margin-bottom: 0.2rem;
+ 
+ }
+ 
+ 
+ 
+ .detail-value {
+ 
+  font-size: 1rem;
+ 
+  color: #06202B;
+ 
+  margin: 0;
+ 
+ }
+ 
+ 
+ 
+ .modal-footer {
+ 
+  border-top: none;
+ 
+  padding: 1.5rem;
+ 
+  display: flex;
+ 
+  justify-content: center;
+ 
+ }
+ 
+ 
+ 
+ .modal-close-button {
+ 
+  background: #e74c3c;
+ 
+  color: white;
+ 
+  border: none;
+ 
+  padding: 0.7rem 1.5rem;
+ 
+  border-radius: 4px;
+ 
+  font-weight: 600;
+ 
+  cursor: pointer;
+ 
+  transition: all 0.3s ease;
+ 
+ }
+ 
+ 
+ 
+ .modal-close-button:hover {
+ 
+  background: #c0392b;
+ 
+ }
+ 
+ 
+ 
+ /* Responsive Design */
+ 
+ @media (max-width: 768px) {
+ 
+  .feedback-details-container {
+ 
+   padding: 1rem;
+ 
+   margin: 1rem;
+ 
+  }
+ 
+   
+ 
+  .feedback-title {
+ 
+   font-size: 1.8rem;
+ 
+  }
+ 
+   
+ 
+  .feedback-table th, 
+ 
+  .feedback-table td {
+ 
+   padding: 0.8rem;
+ 
+   font-size: 0.85rem;
+ 
+  }
+ 
+   
+ 
+  .feedback-text {
+ 
+   max-width: 150px;
+ 
+  }
+ 
+   
+ 
+  .profile-button {
+ 
+   padding: 0.5rem;
+ 
+   font-size: 0.8rem;
+ 
+  }
+ 
+   
+ 
+  .modal-header {
+ 
+   padding: 1rem;
+ 
+  }
+ 
+   
+ 
+  .modal-title {
+ 
+   font-size: 1.2rem;
+ 
+  }
+ 
+   
+ 
+  .user-detail {
+ 
+   flex-direction: column;
+ 
+   align-items: flex-start;
+ 
+   gap: 0.5rem;
+ 
+  }
+ 
+ }
+ 
+ </style>

@@ -1,68 +1,198 @@
-<div class="container mt-4">
-    <h2 class="text-center">Available Rooms</h2>
-    <div class="row mb-3">
-      <div class="col-md-6 offset-md-3">
-        <input 
-          type="text" 
-          class="form-control" 
-          placeholder="Search by Hotel Name, Room Type, or Location" 
-          [(ngModel)]="searchTerm" 
-          (input)="searchByHotelNameRoomTypeLocation()"
-        />
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="col-md-12">
-        <div *ngIf="filteredTerm.length === 0" class="alert alert-warning" role="alert">
-          No rooms found.
-        </div>
-        
-        <div class="card-container">
-          <div *ngFor="let room of paginatedRooms; let i = index" class="card">
-            <!-- <img src= "/assets/images/philip-jahn-PYkpulrIMG0-unsplash.jpg" alt="A stunning accommodation"> -->
-            <img [src]="room.ImageUrl" alt="A stunning accommodation">
+<div class="rooms-container">
 
-            <!-- <img [src]="" alt="Room Image" /> -->
-            <div class="card-header">
-              <div class="hotel-name">{{ room.HotelName }}</div>
-              <div class="price">{{ room.PricePerNight | currency:'INR' }}</div>
-            </div>
-            <div class="card-content">
-              <div class="card-details">
-                <span class="icon">🛏️</span><strong class="small-bold">Room Type:</strong> {{ room.RoomType }}
-              </div>
-              <div class="card-details">
-                <span class="icon">🚪</span><strong class="small-bold">No of Rooms:</strong> {{ room.NoOfRooms }}
-              </div>
-              <div class="card-details">
-                <span class="icon">📍</span><strong class="small-bold">Location:</strong> {{ room.Location }}
-              </div>
-              <div class="card-details">
-                <span class="icon">🛏️</span><strong class="small-bold">Bed Type:</strong> {{ room.BedType }}
-              </div>
-              <div class="card-details">
-                <span class="icon">📝</span><strong class="small-bold">Description:</strong> {{ room.Description }}
-              </div>
-              <div class="card-details">
-                <span class="icon">✔️</span><strong class="small-bold">Facilities:</strong> {{ room.Facilities }}
-              </div>
-            </div>
-            <div class="card-actions">
-              <button *ngIf="!isRoomBookedByUser(room.RoomId)" class="btn btn-primary btn-sm" (click)="bookNow(room.RoomId)">Book Now</button>
-              <button *ngIf="isRoomBookedByUser(room.RoomId)" class="btn btn-danger btn-sm">Booked</button>
-            </div>
-          </div>
-        </div>
-        
-        <nav aria-label="Page navigation example" class="pagination-container mt-4">
-          <ul class="pagination justify-content-center">
-            <li class="page-item" *ngFor="let page of totalPagesArray" [class.active]="currentPage === page">
-              <button class="page-link" (click)="changePage(page)">{{ page }}</button>
-            </li>
-          </ul>
-        </nav>
-        
-      </div>
-    </div>
+  <h2 class="rooms-title">AVAILABLE ROOMS</h2>
+ 
+  <div class="title-divider"></div>
+ 
+ 
+ 
+  <div class="search-container">
+ 
+   <input
+ 
+    type="text"
+ 
+    class="search-input"
+ 
+    placeholder="Search by Hotel Name, Room Type, or Location"
+ 
+    [(ngModel)]="searchTerm"
+ 
+    (input)="searchByHotelNameRoomTypeLocation()"
+ 
+   />
+ 
   </div>
+ 
+ 
+ 
+  <div *ngIf="filteredTerm.length === 0" class="no-rooms-message">
+ 
+   No rooms found matching your search criteria.
+ 
+  </div>
+ 
+ 
+ 
+  <div class="rooms-grid">
+ 
+   <div *ngFor="let room of paginatedRooms; let i = index" class="room-card">
+ 
+    <div class="room-image-container">
+ 
+     <img [src]="room.ImageUrl" alt="Room image" class="room-image" onerror="this.src='/assets/images/default-room.jpg'">
+ 
+    </div>
+ 
+     
+ 
+    <div class="room-header">
+ 
+     <div class="hotel-name">{{ room.HotelName }}</div>
+ 
+     <div class="room-price">{{ room.PricePerNight | currency:'INR' }}/night</div>
+ 
+    </div>
+ 
+     
+ 
+    <div class="room-details">
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">🛏️</span>
+ 
+      <span class="detail-label">Room Type:</span>
+ 
+      <span class="detail-value">{{ room.RoomType }}</span>
+ 
+     </div>
+ 
+      
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">🚪</span>
+ 
+      <span class="detail-label">Available:</span>
+ 
+      <span class="detail-value">{{ room.NoOfRooms }} rooms</span>
+ 
+     </div>
+ 
+      
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">📍</span>
+ 
+      <span class="detail-label">Location:</span>
+ 
+      <span class="detail-value">{{ room.Location }}</span>
+ 
+     </div>
+ 
+      
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">🛌</span>
+ 
+      <span class="detail-label">Bed Type:</span>
+ 
+      <span class="detail-value">{{ room.BedType }}</span>
+ 
+     </div>
+ 
+      
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">📝</span>
+ 
+      <span class="detail-label">Description:</span>
+ 
+      <span class="detail-value">{{ room.Description }}</span>
+ 
+     </div>
+ 
+      
+ 
+     <div class="detail-item">
+ 
+      <span class="detail-icon">✔️</span>
+ 
+      <span class="detail-label">Facilities:</span>
+ 
+      <span class="detail-value">{{ room.Facilities }}</span>
+ 
+     </div>
+ 
+    </div>
+ 
+     
+ 
+    <div class="room-actions">
+ 
+     <button 
+ 
+      *ngIf="!isRoomBookedByUser(room.RoomId)" 
+ 
+      class="book-button"
+ 
+      (click)="bookNow(room.RoomId)"
+ 
+     >
+ 
+      BOOK NOW
+ 
+     </button>
+ 
+     <button 
+ 
+      *ngIf="isRoomBookedByUser(room.RoomId)" 
+ 
+      class="booked-button"
+ 
+     >
+ 
+      BOOKED
+ 
+     </button>
+ 
+    </div>
+ 
+   </div>
+ 
+  </div>
+ 
+ 
+ 
+  <div class="pagination-container">
+ 
+   <div class="pagination">
+ 
+    <button 
+ 
+     class="page-button"
+ 
+     *ngFor="let page of totalPagesArray" 
+ 
+     [class.active]="currentPage === page"
+ 
+     (click)="changePage(page)"
+ 
+    >
+ 
+     {{ page }}
+ 
+    </button>
+ 
+   </div>
+ 
+  </div>
+ 
+ </div>
+ 
+ 
+ 
