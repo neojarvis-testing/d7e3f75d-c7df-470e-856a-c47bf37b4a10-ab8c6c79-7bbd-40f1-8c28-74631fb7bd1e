@@ -1,39 +1,100 @@
-<div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-8 text-center">
-        <h2 class="fw-bold mb-4" style="color: #08374d;">Add Feedback</h2>
-      </div>
+<div class="feedback-container">
+
+  <div class="feedback-card">
+ 
+   <h2 class="feedback-title">SHARE YOUR EXPERIENCE</h2>
+ 
+   <div class="title-divider"></div>
+ 
+    
+ 
+   <form #feedbackForm="ngForm" (ngSubmit)="addFeedback()" class="feedback-form">
+ 
+    <div class="form-group">
+ 
+     <label for="feedback" class="feedback-label">FEEDBACK<span class="required-asterisk">*</span></label>
+ 
+     <textarea 
+ 
+      id="feedback" 
+ 
+      name="feedback" 
+ 
+      [(ngModel)]="feedback.FeedbackText" 
+ 
+      #feedbackNg="ngModel" 
+ 
+      required 
+ 
+      class="feedback-input"
+ 
+      placeholder="We value your thoughts about your stay"
+ 
+     ></textarea>
+ 
+     <div class="error-message" *ngIf="feedbackNg.invalid && (feedbackNg.dirty || feedbackNg.touched)">
+ 
+      Feedback is required
+ 
+     </div>
+ 
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <form #feedbackForm="ngForm" (ngSubmit)="addFeedback()">
-              <div class="form-group mb-3">
-                <label for="feedback">Feedback<span class="text-danger">*</span></label>
-                <textarea id="feedback" name="feedback" [(ngModel)]="feedback.FeedbackText" #feedbackNg="ngModel" required class="form-control mt-2"></textarea>
-                <div class="text-danger mt-2" *ngIf="feedbackNg.invalid && (feedbackNg.dirty || feedbackNg.touched)">
-                  Feedback is required.
-                </div>
-              </div>
-              <button type="submit" [disabled]="feedbackForm.invalid" class="btn btn-primary btn-block">Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
+     
+ 
+    <button 
+ 
+     type="submit" 
+ 
+     [disabled]="feedbackForm.invalid" 
+ 
+     class="submit-button"
+ 
+    >
+ 
+     SUBMIT FEEDBACK
+ 
+    </button>
+ 
+   </form>
+ 
   </div>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm">
-      <div class="modal-content">
-        <div class="modal-body text-center">
-          Successfully Added!
-        </div>
-        <div class="modal-footer justify-content-center">
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
-        </div>
-      </div>
+ 
+ </div>
+ 
+ 
+ 
+ <!-- Modal (unchanged functionality) -->
+ 
+ <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+ 
+  <div class="modal-dialog modal-dialog-centered modal-sm">
+ 
+   <div class="modal-content">
+ 
+    <div class="modal-body text-center">
+ 
+     Successfully Added!
+ 
     </div>
+ 
+    <div class="modal-footer justify-content-center">
+ 
+     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+ 
+    </div>
+ 
+   </div>
+ 
   </div>
+ 
+ </div>
+ 
+ 
+ 
+ <style>
+ 
+ /* Base Styles */
+ 
+
+ </style>

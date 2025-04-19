@@ -21,6 +21,7 @@ import { UserviewmybookingComponent } from './components/userviewmybooking/userv
 import { UserviewroomComponent } from './components/userviewroom/userviewroom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HammerModule
+    HammerModule,
+    AgGridModule
     
   ],
   providers: [],
