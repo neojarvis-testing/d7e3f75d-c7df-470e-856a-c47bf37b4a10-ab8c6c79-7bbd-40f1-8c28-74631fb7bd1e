@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //baseUrl: "https://8080-bdcbecadabbaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io"
-  baseUrl: "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io"
+  baseUrl: "https://8080-cbdfbddecddaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io"
+  // baseUrl: "https://8080-deafabfcaecbccefdafbeedadabccbbdfcfbbde.premiumproject.examly.io"
 };
 
 /*
