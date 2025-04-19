@@ -8,18 +8,19 @@
           <form (ngSubmit)="addBooking(); bookingForm.form.markAllAsTouched();" #bookingForm="ngForm">
             <div class="form-group mb-3">
               <label for="checkInDate">Check-In Date<span class="text-danger">*</span></label>
-              <input type="date" id="checkInDate" [(ngModel)]="booking.CheckInDate" name="checkInDate" #checkInDateNg="ngModel" required class="form-control" placeholder="Enter check-in date" (change)="validateDates()">
+              <input type="date" id="checkInDate" [(ngModel)]="booking.CheckInDate" name="checkInDate" #checkInDateNg="ngModel" required class="form-control" placeholder="Enter check-in date" (change)="validateDates()" [min]="minDate">
               <div *ngIf="checkInDateNg.invalid && (checkInDateNg.touched || bookingForm.submitted)" class="text-danger">
                 Check-In Date is required.
               </div>
             </div>
             <div class="form-group mb-3">
               <label for="checkOutDate">Check-Out Date<span class="text-danger">*</span></label>
-              <input type="date" id="checkOutDate" [(ngModel)]="booking.CheckOutDate" name="checkOutDate" #checkOutDateNg="ngModel" required class="form-control" placeholder="Enter check-out date" (change)="validateDates()">
+              <input type="date" id="checkOutDate" [(ngModel)]="booking.CheckOutDate" name="checkOutDate" #checkOutDateNg="ngModel" required class="form-control" placeholder="Enter check-out date" (change)="validateDates()" [min]="booking.CheckInDate" [min]="minDate">
               <div *ngIf="checkOutDateNg.invalid && (checkOutDateNg.touched || bookingForm.submitted)" class="text-danger">
                 Check-Out Date is required.
               </div>
             </div>
+            
             <div class="form-group mb-3">
               <label for="specialRequests">Special Requests<span class="text-danger">*</span></label>
               <textarea id="specialRequests" [(ngModel)]="booking.SpecialRequests" name="specialRequests" #specialRequestsNg="ngModel" required class="form-control" placeholder="Enter any special requests"></textarea>

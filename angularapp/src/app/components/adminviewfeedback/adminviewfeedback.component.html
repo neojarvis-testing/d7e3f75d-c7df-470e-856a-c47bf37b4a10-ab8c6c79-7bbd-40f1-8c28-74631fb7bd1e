@@ -1,4 +1,9 @@
-  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+ <!-- <select name="show" id="show" [(ngModel)]="show">
+  <option value="HTML">Show in HTML</option>
+  <option value="GRID">Show in Grid</option>
+</select>
+<div *ngIf="show == 'HTML'">
+ <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -58,7 +63,6 @@
   </div>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -74,3 +78,19 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="margin: auto;">Close</button>
       </div>
+</div> -->
+<input type="text" [(ngModel)]="search" placeholder="Enter User Name">
+<button id="searchx" (click)="searchx()">Search</button>
+
+<div>
+   <ag-grid-angular
+   style="width: 100%; height: 500px;"
+   class="ag-theme-alpine"
+   [rowData]="filteredFeedbacks"
+   [columnDefs]="columnDefs"
+   [defaultColDef]="{ resizable: true }"
+   [pagination]="true"
+   >
+   </ag-grid-angular>
+  </div>
+  
