@@ -4,6 +4,10 @@ import { FeedbackService } from 'src/app/services/feedback.service';
 import { User } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+
+import { GridOptions } from 'ag-grid-community';
+
+import { AgGridAngular } from 'ag-grid-angular';
 declare var bootstrap: any;
 
 
@@ -14,11 +18,30 @@ declare var bootstrap: any;
 })
 export class AdminviewfeedbackComponent implements OnInit {
   feedbacks: Feedback[] = [];
+  filteredFeedbacks : Feedback[]=[];
   paginatedFeedbacks: Feedback[] = [];
   selectedUser: User | null = null;
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalPagesArray: number[] = [];
+  search:string='';
+  searchx(): void{
+    this.filteredFeedbacks = this.feedbacks.filter(item => item.User.Username == this.search);
+  }
+  
+
+  gridOptions: GridOptions = {
+     pagination: true,
+     defaultColDef: { resizable: true }
+     };
+    
+  
+  columnDefs = [
+    {field:'User.Username', sortable: true, filters: true},
+    {field:'FeedbackText', sortable: true, filters: true},
+    {field:'Date', sortable: true, filters: true},
+    {field:'User.MobileNumber', sortable: true, filters: true}
+  ]
 
   constructor(private feedbackService: FeedbackService, private router: Router) { }
 
@@ -26,20 +49,6 @@ export class AdminviewfeedbackComponent implements OnInit {
     this.loadFeedbacks();
   }
 
-  // loadFeedbacks(): void {
-  //   this.feedbackService.getFeedbacks().subscribe(
-     
-  //     (res) => {
-  //       console.log(res);
-  //       this.feedbacks = res;
-  //       this.paginateFeedbacks();
-  //       this.setupPagination();
-  //     },
-  //     (error) => {
-  //       console.error('Error fetching feedbacks:', error);
-  //     }
-  //   );
-  // }
   loadFeedbacks(): void {
     Swal.fire({
       title: 'Loading Feedbacks...',
@@ -54,6 +63,7 @@ export class AdminviewfeedbackComponent implements OnInit {
       (res) => {
         console.log(res);
         this.feedbacks = res;
+        this.filteredFeedbacks = res;
         this.paginateFeedbacks();
         this.setupPagination();
         Swal.close(); // Close the loading spinner when data is successfully loaded
