@@ -135,5 +135,3 @@ export class AdminviewroomComponent implements OnInit {
   }
   
 }
-
-

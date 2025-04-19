@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class AuthService {
-  
+
   public apiUrl = environment.baseUrl;
 
   private currentUserRole = new BehaviorSubject<string | null>(null);
