@@ -16,10 +16,14 @@ import Swal from 'sweetalert2';
 })
 
 export class HomeComponent implements AfterViewInit {
-
+role:string='';
+login=false;
    constructor(private router: Router){}
  ngAfterViewInit() {
-
+   this.role = localStorage.getItem('token');
+   if (this.role) {
+      this.login = true;
+   }
  }
  subscribe(): void{
    Swal.fire({

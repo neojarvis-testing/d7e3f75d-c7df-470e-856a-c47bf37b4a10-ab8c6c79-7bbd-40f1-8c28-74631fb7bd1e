@@ -12,7 +12,7 @@
  
     <div class="hero-cta">
  
-     <button class="explore-button" (click)="navigation()">EXPLORE DESTINATIONS</button>
+     <button class="explore-button" (click)="navigation()" *ngIf="!login">EXPLORE DESTINATIONS</button>
  
     </div>
  

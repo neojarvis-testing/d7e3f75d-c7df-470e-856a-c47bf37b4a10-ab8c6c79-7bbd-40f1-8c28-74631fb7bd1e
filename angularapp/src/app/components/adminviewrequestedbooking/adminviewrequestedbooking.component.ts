@@ -14,6 +14,7 @@ export class AdminviewrequestedbookingComponent implements OnInit {
   bookings:Booking[] = [];
   filteredBooking: Booking[] = []; 
   searchTerm:string=''; 
+  room:Room;
 
   constructor(private service:RoomService) { }
 
@@ -52,8 +53,8 @@ export class AdminviewrequestedbookingComponent implements OnInit {
       Swal.close(); // Close the loading spinner even if there's an error
       Swal.fire({
         icon: 'info',
-        title: 'No Data',
-        text: 'No bookings available.'
+        title: 'Error',
+        text: 'Error while loading Bookings.'
       });
     }
   );
@@ -82,9 +83,32 @@ export class AdminviewrequestedbookingComponent implements OnInit {
 
   updateStatus(booking: Booking, status: string): void {
     booking.Status = status;
-    this.service.updateBooking(booking.BookingId, booking).subscribe(() => {
-      this.loadbookings(); // Refresh the bookings list
-    });
+   
+    this.service.getRoomById(booking.RoomId).subscribe((data) => {
+      this.room = data;
+    })
+    setTimeout(() => {
+      console.log('This message is delayed by 2 seconds');
+    console.log(this.room);
+    console.log(this.room.NoOfRooms);
+    if (booking.Status == 'Approved') {
+      booking.Room.NoOfRooms = booking.Room.NoOfRooms - 1;
+      this.room.NoOfRooms = this.room.NoOfRooms - 1;
+      console.log('Approve Room: ', this.room.NoOfRooms);
+      
+    }
+    if (booking.Status == 'Rejected') {
+      booking.Room.NoOfRooms = booking.Room.NoOfRooms + 1;
+      this.room.NoOfRooms = this.room.NoOfRooms + 1;
+      console.log('Reject Room: ', this.room.NoOfRooms);
+    }
+    this.service.updateRoom(booking.RoomId, this.room).subscribe(() => {
+  });
+  this.service.updateBooking(booking.BookingId, booking).subscribe(() => {
+    this.loadbookings(); // Refresh the bookings list
+  })
+  }, 2000);
   }
+  
 
 }

@@ -60,7 +60,7 @@ export class AdminviewroomComponent implements OnInit {
       Swal.fire({
         icon: 'info',
         title: 'No Data',
-        text: 'No Rooms available.'
+        text: 'Error while loading rooms.'
       });
     }
   );
@@ -87,7 +87,7 @@ export class AdminviewroomComponent implements OnInit {
     this.paginateRooms();
     console.log("Here");
   }
-
+ 
   paginateRooms(): void {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -121,13 +121,11 @@ export class AdminviewroomComponent implements OnInit {
         },
         (error) => {
           if (error.status === 500) {
-            console.error('Server error occurred.');
             Swal.fire({
               icon: 'error',
               title: 'Can Not Delete',
-              text: 'Room has been booked.'
+              text: 'Room booking request has been generated.'
             });
-            // You can add additional logic here, such as displaying an error message to the user
           }
         }
       );

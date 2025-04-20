@@ -121,10 +121,6 @@ export class AuthService {
     console.log("Auth Seer: "+ this.currentUserId);
     return this.currentUserId.asObservable();
   }
-  private decodeToken(token: string): any {
-    const payload = token.split('.')[1];
-    return JSON.parse(atob(payload));
-  }
  
  
 }

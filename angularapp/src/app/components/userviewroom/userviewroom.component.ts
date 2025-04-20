@@ -58,8 +58,8 @@ export class UserviewroomComponent implements OnInit {
       this.filteredTerm = [...this.rooms];
       console.log('Reset filtered rooms:', this.filteredTerm);
     }
-    this.paginateRooms();
     this.setupPagination();
+    this.paginateRooms();
   }
 
   loadUserBookings(): void {
@@ -105,7 +105,7 @@ export class UserviewroomComponent implements OnInit {
 
   setupPagination(): void {
     const totalPages = Math.ceil(this.filteredTerm.length / this.itemsPerPage);
-    this.totalPagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.totalPagesArray = Array(totalPages).fill(0).map((x, i) => i + 1);
   }
 
   changePage(page: number): void {

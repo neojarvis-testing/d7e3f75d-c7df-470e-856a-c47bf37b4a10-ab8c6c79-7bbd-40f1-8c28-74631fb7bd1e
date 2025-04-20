@@ -77,7 +77,7 @@ export class UserviewfeedbackComponent implements OnInit {
 
   setupPagination(): void {
     const totalPages = Math.ceil(this.feedbacks.length / this.itemsPerPage);
-    this.totalPagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+    this.totalPagesArray = Array(totalPages).fill(0).map((x, i) => i + 1);
   }
 
   changePage(page: number): void {

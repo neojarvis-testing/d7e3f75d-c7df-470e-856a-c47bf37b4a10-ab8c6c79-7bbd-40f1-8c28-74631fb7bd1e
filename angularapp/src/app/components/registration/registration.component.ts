@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
     UserRole: ''
   };
   confirmPassword: string = '';
-  secretKey: string = 'admin@training'; // Secret key for Admin registration
+  secretKey: string = 'zeal@dotnet'; // Secret key for Admin registration
   enteredkey: string = '';
  
   constructor(private authService: AuthService, private router: Router) { }
